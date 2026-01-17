@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChillingCar.com - Interaktivní Příběhová Hra</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="margin: 0; padding: 0;">
+  <!-- Header Image - Full Width -->
+  <div class="headbar-full-width" style="width: 100vw; margin: 0; padding: 0; position: relative; z-index: 100;">
+    <img src="HeadBar.png" alt="ChillingCar.com" class="headbar-image-full" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; position: relative; z-index: 101;">
+  </div>
+
+  <!-- Background Effects -->
+  <div class="background-gradient"></div>
+  <div class="fog-layer"></div>
+  <div class="stars-container" id="stars"></div>
+  <div class="ember-container" id="embers"></div>
+
+  <!-- Main Content -->
+  <div class="container" style="padding-top: 2rem; text-align: center;">
+    
+    <!-- Header Content -->
+    
+
+    <!-- Play Button -->
+    <div style="margin-top: 4rem;">
+      <button class="continue-button" id="playButton" style="font-size: 1.3rem; padding: 1.5rem 3rem;">
+        <span>🎮</span>
+        <span>Spustit hru</span>
+      </button>
+    </div>
+
+    <!-- Development Notice (hidden initially) -->
+    <div id="devNotice" class="map-info-card" style="margin-top: 3rem; display: none; max-width: 500px; margin-left: auto; margin-right: auto;">
+      <h3 style="color: #ff6b35; margin-bottom: 1rem;">⚠️ Ve vývoji</h3>
+      <p style="font-size: 1rem; line-height: 1.8;">
+        Hra je momentálně ve vývoji
+      </p>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #888;">
+        Sleduj tento repozitář pro aktualizace 🌟
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    // Create stars
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.setProperty('--duration', (2 + Math.random() * 3) + 's');
+      star.style.animationDelay = Math.random() * 3 + 's';
+      starsContainer.appendChild(star);
+    }
+
+    // Create embers
+    const embersContainer = document.getElementById('embers');
+    for (let i = 0; i < 15; i++) {
+      const ember = document.createElement('div');
+      ember.className = 'ember-particle';
+      ember.style.left = Math.random() * 100 + '%';
+      ember.style.setProperty('--duration', (8 + Math.random() * 6) + 's');
+      ember.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+      ember.style.animationDelay = Math.random() * 5 + 's';
+      embersContainer.appendChild(ember);
+    }
+
+    // Play button functionality
+    const playButton = document.getElementById('playButton');
+    const devNotice = document.getElementById('devNotice');
+
+    playButton.addEventListener('click', function() {
+      // Add click effect
+      this.classList.add('clicked');
+      
+      // Show development notice with animation
+      setTimeout(() => {
+        devNotice.style.display = 'block';
+        setTimeout(() => {
+          devNotice.style.opacity = '0';
+          devNotice.style.transform = 'translateY(20px)';
+          devNotice.style.transition = 'all 0.6s ease';
+          setTimeout(() => {
+            devNotice.style.opacity = '1';
+            devNotice.style.transform = 'translateY(0)';
+          }, 10);
+        }, 10);
+      }, 300);
+
+      // Remove clicked class
+      setTimeout(() => {
+        this.classList.remove('clicked');
+      }, 600);
+    });
+  </script>
+</body>
+</html>
