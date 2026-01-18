@@ -1533,7 +1533,7 @@ getKonecChapter() {
           { text: "Tak čus! 👋", huge: true, gold: true, glow: true }
         ],
         buttons: [
-          
+          { text: "Tohle tlačítko nic nedělá ani když na něj klineš stokrát 😉", action: "next" }
         ]
       }
     ]
