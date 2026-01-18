@@ -1475,9 +1475,9 @@ getKonecChapter() {
           { text: "mi řekl, že mě rád uvidí.", speed: 40, pauseAfter: 1500 },
           { text: "Jak jsem slyšel,", speed: 40 },
           { text: "tobě nejvíc vyhovují soboty,", speed: 40 },
-          { text: "takže bych v pátek nejspíš přespal u něho", speed: 40 },
-          { text: "On by mi dal moudra", speed: 40 },
-          { text: "a zvedl mi IQ na úroveň,", speed: 40 },
+          { text: "takže bych v pátek nejspíš přespím u něho", speed: 40 },
+          { text: "On mi dá moudra", speed: 40 },
+          { text: "a zvedne mi IQ na úroveň,", speed: 40 },
           { text: "takže až tě v sobotu uvidím,", speed: 40 },
           { text: "budu Předávat moudra za dva", speed: 40, bold: true }
         
