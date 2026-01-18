@@ -1533,7 +1533,7 @@ getKonecChapter() {
           { text: "Tak čus! 👋", huge: true, gold: true, glow: true }
         ],
         buttons: [
-          { text: "Čus! 👋", action: "end", primary: true }
+          
         ]
       }
     ]
