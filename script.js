@@ -13,7 +13,6 @@ const minutesEl = document.getElementById("minutes");
 const secondsEl = document.getElementById("seconds");
 const examTitleEl = document.getElementById("current-exam-title");
 const examListEl = document.getElementById("exam-list");
-const mascotImg = document.getElementById("mascot-img");
 
 function init() {
     renderExamsList();
@@ -40,10 +39,6 @@ function renderExamsList() {
             // highlight logic
             document.querySelectorAll("li").forEach(e => e.classList.remove("active"));
             li.classList.add("active");
-
-            // swap image to make it dynamic from 5 images
-            const imageIndex = (index % 5) + 1;
-            mascotImg.src = `images/cat${imageIndex}.png`;
         });
 
         if (index === 0) li.classList.add("active");
