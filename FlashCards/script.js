@@ -406,6 +406,31 @@ function renderStudyCard() {
 }
 
 // --- Quiz Logic (založeno na základních profilech) ---
+function getLucideIconSvg(iconName) {
+    if (!window.lucide || !window.lucide.icons || !window.lucide.icons[iconName]) {
+        return '';
+    }
+
+    return window.lucide.icons[iconName].toSvg({
+        width: 18,
+        height: 18,
+        class: 'feedback-icon',
+        'stroke-width': 2.2
+    });
+}
+
+function setFeedbackMessage(element, message, iconName, statusClass) {
+    const iconSvg = getLucideIconSvg(iconName);
+    element.className = `quiz-feedback ${statusClass}`;
+
+    if (iconSvg) {
+        element.innerHTML = `<span class="feedback-content">${iconSvg}<span>${message}</span></span>`;
+        return;
+    }
+
+    element.textContent = message;
+}
+
 function generateQuizQuestion() {
     quizActive = true;
     document.getElementById('quiz-next-btn').classList.add('hidden');
@@ -471,13 +496,11 @@ function handleQuizAnswer(isCorrect, btn) {
 
     if (isCorrect) {
         btn.classList.add('correct');
-        feedback.innerText = 'Správně! 🎉';
-        feedback.className = 'quiz-feedback success';
+        setFeedbackMessage(feedback, 'Správně!', 'party-popper', 'success');
         quizScore++;
     } else {
         btn.classList.add('wrong');
-        feedback.innerText = 'Špatně! 😢';
-        feedback.className = 'quiz-feedback error';
+        setFeedbackMessage(feedback, 'Špatně!', 'circle-x', 'error');
         
         // Najdi správnou odpověď a obarvi ji
         allOpts.forEach(b => {
@@ -608,12 +631,10 @@ function handleMatchCheck() {
 
     const feedback = document.getElementById('match-feedback');
     if (allCorrect) {
-        feedback.innerText = 'Perfektní! Vybral jsi všechny správné. 🌟';
-        feedback.className = 'quiz-feedback success';
+        setFeedbackMessage(feedback, 'Perfektní! Vybral jsi všechny správné.', 'sparkles', 'success');
         matchScore++;
     } else {
-        feedback.innerText = 'Něco chybí nebo je navíc. 😕';
-        feedback.className = 'quiz-feedback error';
+        setFeedbackMessage(feedback, 'Něco chybí nebo je navíc.', 'triangle-alert', 'error');
     }
 
     document.getElementById('match-score').innerText = matchScore;
