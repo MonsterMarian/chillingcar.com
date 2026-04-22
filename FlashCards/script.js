@@ -426,6 +426,20 @@ function getLucideIconSvg(iconName) {
     return window.lucide.icons[iconName].toSvg();
 }
 
+function createFeedbackIconElement(iconSvg) {
+    const parser = new DOMParser();
+    const parsed = parser.parseFromString(iconSvg, 'image/svg+xml');
+    const parseError = parsed.querySelector('parsererror');
+    const svg = parsed.documentElement;
+
+    if (parseError || !svg || svg.nodeName.toLowerCase() !== 'svg') {
+        console.warn('Failed to parse Lucide SVG for feedback rendering.');
+        return null;
+    }
+
+    return document.importNode(svg, true);
+}
+
 function setFeedbackMessage(element, message, iconName, statusClass) {
     const iconSvg = getLucideIconSvg(iconName);
     element.className = `quiz-feedback ${statusClass}`;
@@ -437,7 +451,12 @@ function setFeedbackMessage(element, message, iconName, statusClass) {
         const iconContainer = document.createElement('span');
         iconContainer.className = 'feedback-icon';
         iconContainer.setAttribute('aria-hidden', 'true');
-        iconContainer.innerHTML = iconSvg;
+        const iconElement = createFeedbackIconElement(iconSvg);
+        if (!iconElement) {
+            element.textContent = message;
+            return;
+        }
+        iconContainer.appendChild(iconElement);
 
         const textNode = document.createElement('span');
         textNode.textContent = message;
