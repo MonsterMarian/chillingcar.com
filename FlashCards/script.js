@@ -414,7 +414,7 @@ function renderStudyCard() {
 // --- Quiz Logic (založeno na základních profilech) ---
 function getLucideIconSvg(iconName) {
     if (!window.lucide || !window.lucide.icons) {
-        console.warn('Lucide runtime is unavailable for feedback icon rendering.');
+        console.warn('Lucide runtime is not available for feedback icon rendering.');
         return '';
     }
 
@@ -431,7 +431,19 @@ function setFeedbackMessage(element, message, iconName, statusClass) {
     element.className = `quiz-feedback ${statusClass}`;
 
     if (iconSvg) {
-        element.innerHTML = `<span class="feedback-content">${iconSvg}<span>${message}</span></span>`;
+        const content = document.createElement('span');
+        content.className = 'feedback-content';
+
+        const iconContainer = document.createElement('span');
+        iconContainer.className = 'feedback-icon';
+        iconContainer.setAttribute('aria-hidden', 'true');
+        iconContainer.innerHTML = iconSvg;
+
+        const textNode = document.createElement('span');
+        textNode.textContent = message;
+
+        content.append(iconContainer, textNode);
+        element.replaceChildren(content);
         return;
     }
 
