@@ -259,13 +259,13 @@ li.active {
   text-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
 }
 
-.fleshcards-link-container {
+.flashcards-link-container {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
 
-.fleshcards-btn {
+.flashcards-btn {
   background: var(--accent-orange);
   color: #000;
   text-decoration: none;
@@ -283,12 +283,12 @@ li.active {
   gap: 10px;
 }
 
-.fleshcards-btn:hover {
+.flashcards-btn:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 0 25px var(--accent-orange);
 }
 
-.fleshcards-btn::after {
+.flashcards-btn::after {
   content: ' →';
   font-size: 1.2rem;
 }
