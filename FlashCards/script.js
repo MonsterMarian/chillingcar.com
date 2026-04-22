@@ -219,10 +219,16 @@ const shuffleBtn = document.getElementById('shuffle-btn');
 const progressText = document.getElementById('study-progress-text');
 const totalCardsBadge = document.getElementById('total-cards-badge');
 
+function initLucideIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+    }
+}
+
 // Init
 function init() {
     rawAuthors = parseAuthorProfiles(rawData);
-    
+    initLucideIcons();
 
 
     atomicDeck = generateAtomicCards(rawAuthors);
@@ -406,6 +412,63 @@ function renderStudyCard() {
 }
 
 // --- Quiz Logic (založeno na základních profilech) ---
+function getLucideIconSvg(iconName) {
+    if (!window.lucide || !window.lucide.icons) {
+        console.warn('Lucide runtime is not available for feedback icon rendering.');
+        return '';
+    }
+
+    if (!window.lucide.icons[iconName]) {
+        console.warn(`Lucide icon "${iconName}" is unavailable for feedback rendering.`);
+        return '';
+    }
+
+    return window.lucide.icons[iconName].toSvg();
+}
+
+function createFeedbackIconElement(iconSvg) {
+    const parser = new DOMParser();
+    const parsed = parser.parseFromString(iconSvg, 'image/svg+xml');
+    const parseError = parsed.querySelector('parsererror');
+    const svg = parsed.documentElement;
+
+    if (parseError || !svg || svg.nodeName.toLowerCase() !== 'svg') {
+        console.warn('Failed to parse Lucide SVG for feedback rendering.');
+        return null;
+    }
+
+    return document.importNode(svg, true);
+}
+
+function setFeedbackMessage(element, message, iconName, statusClass) {
+    const iconSvg = getLucideIconSvg(iconName);
+    element.className = `quiz-feedback ${statusClass}`;
+
+    if (iconSvg) {
+        const content = document.createElement('span');
+        content.className = 'feedback-content';
+
+        const iconContainer = document.createElement('span');
+        iconContainer.className = 'feedback-icon';
+        iconContainer.setAttribute('aria-hidden', 'true');
+        const iconElement = createFeedbackIconElement(iconSvg);
+        if (!iconElement) {
+            element.textContent = message;
+            return;
+        }
+        iconContainer.appendChild(iconElement);
+
+        const textNode = document.createElement('span');
+        textNode.textContent = message;
+
+        content.append(iconContainer, textNode);
+        element.replaceChildren(content);
+        return;
+    }
+
+    element.textContent = message;
+}
+
 function generateQuizQuestion() {
     quizActive = true;
     document.getElementById('quiz-next-btn').classList.add('hidden');
@@ -471,13 +534,11 @@ function handleQuizAnswer(isCorrect, btn) {
 
     if (isCorrect) {
         btn.classList.add('correct');
-        feedback.innerText = 'Správně! 🎉';
-        feedback.className = 'quiz-feedback success';
+        setFeedbackMessage(feedback, 'Správně!', 'party-popper', 'success');
         quizScore++;
     } else {
         btn.classList.add('wrong');
-        feedback.innerText = 'Špatně! 😢';
-        feedback.className = 'quiz-feedback error';
+        setFeedbackMessage(feedback, 'Špatně!', 'circle-x', 'error');
         
         // Najdi správnou odpověď a obarvi ji
         allOpts.forEach(b => {
@@ -608,12 +669,10 @@ function handleMatchCheck() {
 
     const feedback = document.getElementById('match-feedback');
     if (allCorrect) {
-        feedback.innerText = 'Perfektní! Vybral jsi všechny správné. 🌟';
-        feedback.className = 'quiz-feedback success';
+        setFeedbackMessage(feedback, 'Perfektní! Vybral jsi všechny správné.', 'sparkles', 'success');
         matchScore++;
     } else {
-        feedback.innerText = 'Něco chybí nebo je navíc. 😕';
-        feedback.className = 'quiz-feedback error';
+        setFeedbackMessage(feedback, 'Něco chybí nebo je navíc.', 'triangle-alert', 'error');
     }
 
     document.getElementById('match-score').innerText = matchScore;

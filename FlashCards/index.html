@@ -6,6 +6,7 @@
     <title>Literatura - Flashcards</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div id="app">
@@ -29,8 +30,14 @@
             <!-- STUDY MODE -->
             <section id="view-study" class="view active">
                 <div class="controls">
-                    <button id="open-filters-btn" class="action-btn">🎯 Filtry</button>
-                    <button id="shuffle-btn" class="action-btn">🔀 Zamíchat</button>
+                    <button id="open-filters-btn" class="action-btn">
+                        <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
+                        <span>Filtry</span>
+                    </button>
+                    <button id="shuffle-btn" class="action-btn">
+                        <i data-lucide="shuffle" aria-hidden="true"></i>
+                        <span>Zamíchat</span>
+                    </button>
                     <div class="deck-stats">Karet: <span id="total-cards-badge">0</span></div>
                 </div>
 
@@ -50,21 +57,21 @@
                                 <label class="checkbox-wrapper">
                                     <input type="checkbox" id="type-authors-works" checked>
                                     <span class="checkbox-tile">
-                                        <span class="tile-icon">📚</span>
+                                        <span class="tile-icon"><i data-lucide="book-open" aria-hidden="true"></i></span>
                                         <span class="tile-label">Autoři a hlavní díla</span>
                                     </span>
                                 </label>
                                 <label class="checkbox-wrapper">
                                     <input type="checkbox" id="type-eras-years" checked>
                                     <span class="checkbox-tile">
-                                        <span class="tile-icon">⌛</span>
+                                        <span class="tile-icon"><i data-lucide="hourglass" aria-hidden="true"></i></span>
                                         <span class="tile-label">Období a roky</span>
                                     </span>
                                 </label>
                                 <label class="checkbox-wrapper">
                                     <input type="checkbox" id="type-everything" checked>
                                     <span class="checkbox-tile">
-                                        <span class="tile-icon">✍️</span>
+                                        <span class="tile-icon"><i data-lucide="pen-line" aria-hidden="true"></i></span>
                                         <span class="tile-label">Všechny ostatní info</span>
                                     </span>
                                 </label>
@@ -170,6 +177,7 @@
             ember.style.animationDelay = Math.random() * 5 + 's';
             embersContainer.appendChild(ember);
         }
+
     </script>
 </body>
 </html>
