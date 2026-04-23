@@ -170,14 +170,6 @@ function generateAtomicCards(authors, filters = { types: ['authors-works', 'eras
                 });
             }
 
-            // 6. Ekvivalenty
-            if (auth.equivalent && auth.equivalent !== "—" && !auth.equivalent.startsWith("—")) {
-               generatedCards.push({
-                   type: 'Srovnání / Ekvivalent',
-                   prompt: `Jaký je český / světový ekvivalent k autorovi či dílu:\n${auth.author}?`,
-                   answer: auth.equivalent
-               });
-            }
         }
     });
 
