@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChillingCar - Exam Countdown</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body style="margin: 0; padding: 0;">
     <!-- Header Image - Full Width -->
     <div class="headbar-full-width" style="width: 100vw; margin: 0; padding: 0; position: relative; z-index: 100;">
-        <img src="HeadBar.png" alt="ChillingCar.com" class="headbar-image-full" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; position: relative; z-index: 101;">
+        <img src="images/HeadBar.png" alt="ChillingCar.com" class="headbar-image-full" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; position: relative; z-index: 101;">
     </div>
 
     <!-- Background Effects -->
@@ -24,9 +24,8 @@
         <header>
             <h1 class="main-title">EXAM COUNTDOWN</h1>
             <h2 id="current-exam-title">Select an Exam</h2>
-            <div class="fleshcards-link-container" style="gap: 1rem;">
-                <a href="FlashCards/index.html" class="fleshcards-btn">Učit se Literatura</a>
-                <a href="FleshCards/literarni-test/index.html" class="fleshcards-btn" style="background: transparent; color: var(--accent-orange); border: 2px solid var(--accent-orange);">Literární Test</a>
+            <div class="fleshcards-link-container" style="gap: 1rem; display: flex; justify-content: center; margin-top: 20px;">
+                <a href="literatura/index.html" class="fleshcards-btn" style="padding: 15px 40px; font-size: 1.2rem; text-decoration: none; background: linear-gradient(135deg, #00f2ff, #ff00ea); color: white; border-radius: 50px; font-weight: 800; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transition: transform 0.3s;">Učit se Literaturu</a>
             </div>
         </header>
 
@@ -60,30 +59,26 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <script>
-        // Create stars
+        // Particle logic
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.setProperty('--duration', (2 + Math.random() * 3) + 's');
-        star.style.animationDelay = Math.random() * 3 + 's';
-        starsContainer.appendChild(star);
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (2 + Math.random() * 3) + 's');
+            starsContainer.appendChild(star);
         }
-
-        // Create embers
         const embersContainer = document.getElementById('embers');
         for (let i = 0; i < 15; i++) {
-        const ember = document.createElement('div');
-        ember.className = 'ember-particle';
-        ember.style.left = Math.random() * 100 + '%';
-        ember.style.setProperty('--duration', (8 + Math.random() * 6) + 's');
-        ember.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
-        ember.style.animationDelay = Math.random() * 5 + 's';
-        embersContainer.appendChild(ember);
+            const ember = document.createElement('div');
+            ember.className = 'ember-particle';
+            ember.style.left = Math.random() * 100 + '%';
+            ember.style.setProperty('--duration', (8 + Math.random() * 6) + 's');
+            ember.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+            embersContainer.appendChild(ember);
         }
     </script>
 </body>
