@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
   showWorkSelection()
 })
 
+// Safe helper for adding event listeners
+function addSafeEventListener(id, event, callback) {
+  const el = document.getElementById(id)
+  if (el) {
+    el.addEventListener(event, callback)
+  }
+}
+
 // Render work selection buttons dynamically
 function renderWorkButtons() {
   const container = document.getElementById("workButtonsContainer")
@@ -50,29 +58,23 @@ function renderWorkButtons() {
 // Event listeners
 function setupEventListeners() {
   // Category checkboxes
-  document.getElementById("genreCheckbox").addEventListener("change", updateSelectedCategories)
-  document.getElementById("authorCheckbox").addEventListener("change", updateSelectedCategories)
-  document.getElementById("authorDetailsCheckbox").addEventListener("change", updateSelectedCategories)
-  document.getElementById("authorPeriodCheckbox").addEventListener("change", updateSelectedCategories)
+  addSafeEventListener("genreCheckbox", "change", updateSelectedCategories)
+  addSafeEventListener("authorCheckbox", "change", updateSelectedCategories)
+  addSafeEventListener("authorDetailsCheckbox", "change", updateSelectedCategories)
+  addSafeEventListener("authorPeriodCheckbox", "change", updateSelectedCategories)
   
   // Start test button
-  document.getElementById("startTestBtn").addEventListener("click", startTest)
-  
-  // Import/Export buttons
-  document.getElementById("exportTemplateBtn").addEventListener("click", exportTemplate)
-  document.getElementById("exportDataBtn").addEventListener("click", exportAllData)
-  document.getElementById("importDataBtn").addEventListener("click", () => document.getElementById("importFileInput").click())
-  document.getElementById("importFileInput").addEventListener("change", importDataFromFile)
+  addSafeEventListener("startTestBtn", "click", startTest)
   
   // Navigation buttons
-  document.getElementById("allQuestionsBtn").addEventListener("click", showAllQuestions)
-  document.getElementById("wrongQuestionsBtn").addEventListener("click", showWrongQuestions)
-  document.getElementById("resetBtn").addEventListener("click", resetQuiz)
-  document.getElementById("backToSelectionBtn").addEventListener("click", showWorkSelection)
-  document.getElementById("nextBtn").addEventListener("click", nextQuestion)
-  document.getElementById("prevBtn").addEventListener("click", prevQuestion)
-  document.getElementById("starBtn").addEventListener("click", toggleStarQuestion)
-  document.getElementById("restartBtn").addEventListener("click", restartQuiz)
+  addSafeEventListener("allQuestionsBtn", "click", showAllQuestions)
+  addSafeEventListener("wrongQuestionsBtn", "click", showWrongQuestions)
+  addSafeEventListener("resetBtn", "click", resetQuiz)
+  addSafeEventListener("backToSelectionBtn", "click", showWorkSelection)
+  addSafeEventListener("nextBtn", "click", nextQuestion)
+  addSafeEventListener("prevBtn", "click", prevQuestion)
+  addSafeEventListener("starBtn", "click", toggleStarQuestion)
+  addSafeEventListener("restartBtn", "click", restartQuiz)
 }
 
 // Show work selection screen
