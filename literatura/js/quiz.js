@@ -25,7 +25,23 @@ function addSafeEventListener(id, event, callback) {
   const el = document.getElementById(id)
   if (el) {
     el.addEventListener(event, callback)
+  } else {
+    console.warn(`Element with id "${id}" not found. Event listener for "${event}" not added.`)
   }
+}
+
+// Safe helper for setting text content
+function safeSetText(id, text) {
+  const el = document.getElementById(id)
+  if (el) el.textContent = text
+  else console.warn(`Element with id "${id}" not found. Cannot set text content.`)
+}
+
+// Safe helper for toggling class
+function safeToggleClass(id, className, force) {
+  const el = document.getElementById(id)
+  if (el) el.classList.toggle(className, force)
+  else console.warn(`Element with id "${id}" not found. Cannot toggle class "${className}".`)
 }
 
 // Render work selection buttons dynamically
@@ -57,33 +73,40 @@ function renderWorkButtons() {
 
 // Event listeners
 function setupEventListeners() {
+  console.log("Setting up event listeners...")
   // Category checkboxes
-  addSafeEventListener("genreCheckbox", "change", updateSelectedCategories)
-  addSafeEventListener("authorCheckbox", "change", updateSelectedCategories)
-  addSafeEventListener("authorDetailsCheckbox", "change", updateSelectedCategories)
-  addSafeEventListener("authorPeriodCheckbox", "change", updateSelectedCategories)
+  const categories = ["genreCheckbox", "authorCheckbox", "authorDetailsCheckbox", "authorPeriodCheckbox"]
+  categories.forEach(id => {
+    addSafeEventListener(id, "change", updateSelectedCategories)
+  })
   
   // Start test button
   addSafeEventListener("startTestBtn", "click", startTest)
   
   // Navigation buttons
-  addSafeEventListener("allQuestionsBtn", "click", showAllQuestions)
-  addSafeEventListener("wrongQuestionsBtn", "click", showWrongQuestions)
-  addSafeEventListener("resetBtn", "click", resetQuiz)
-  addSafeEventListener("backToSelectionBtn", "click", showWorkSelection)
-  addSafeEventListener("nextBtn", "click", nextQuestion)
-  addSafeEventListener("prevBtn", "click", prevQuestion)
-  addSafeEventListener("starBtn", "click", toggleStarQuestion)
-  addSafeEventListener("restartBtn", "click", restartQuiz)
+  const navButtons = [
+    { id: "allQuestionsBtn", event: "click", callback: showAllQuestions },
+    { id: "wrongQuestionsBtn", event: "click", callback: showWrongQuestions },
+    { id: "resetBtn", event: "click", callback: resetQuiz },
+    { id: "backToSelectionBtn", event: "click", callback: showWorkSelection },
+    { id: "nextBtn", event: "click", callback: nextQuestion },
+    { id: "prevBtn", event: "click", callback: prevQuestion },
+    { id: "starBtn", event: "click", callback: toggleStarQuestion },
+    { id: "restartBtn", event: "click", callback: restartQuiz }
+  ]
+
+  navButtons.forEach(btn => {
+    addSafeEventListener(btn.id, btn.event, btn.callback)
+  })
 }
 
 // Show work selection screen
 function showWorkSelection() {
-  document.getElementById("quizContainer").classList.add("hidden")
-  document.getElementById("controlsSection").classList.add("hidden")
-  document.getElementById("completionScreen").classList.add("hidden")
-  document.getElementById("workSelection").classList.remove("hidden")
-  document.getElementById("categorySelection").classList.remove("hidden")
+  safeToggleClass("quizContainer", "hidden", true)
+  safeToggleClass("controlsSection", "hidden", true)
+  safeToggleClass("completionScreen", "hidden", true)
+  safeToggleClass("workSelection", "hidden", false)
+  safeToggleClass("categorySelection", "hidden", false)
   
   currentWork = "all"
   currentCategories = ['genre', 'author', 'authorDetails', 'authorPeriod']
@@ -92,10 +115,17 @@ function showWorkSelection() {
   const allBtn = document.getElementById("allWorksBtn")
   if (allBtn) allBtn.classList.add("active")
   
-  document.getElementById("genreCheckbox").checked = true
-  document.getElementById("authorCheckbox").checked = true
-  document.getElementById("authorDetailsCheckbox").checked = true
-  document.getElementById("authorPeriodCheckbox").checked = true
+  const genreCheck = document.getElementById("genreCheckbox")
+  if (genreCheck) genreCheck.checked = true
+  
+  const authorCheck = document.getElementById("authorCheckbox")
+  if (authorCheck) authorCheck.checked = true
+  
+  const authorDetailsCheck = document.getElementById("authorDetailsCheckbox")
+  if (authorDetailsCheck) authorDetailsCheck.checked = true
+  
+  const authorPeriodCheck = document.getElementById("authorPeriodCheckbox")
+  if (authorPeriodCheck) authorPeriodCheck.checked = true
 }
 
 // Select literary work
@@ -109,10 +139,17 @@ function selectWork(work) {
 // Update selected categories based on checkboxes
 function updateSelectedCategories() {
   currentCategories = []
-  if (document.getElementById("genreCheckbox").checked) currentCategories.push('genre')
-  if (document.getElementById("authorCheckbox").checked) currentCategories.push('author')
-  if (document.getElementById("authorDetailsCheckbox").checked) currentCategories.push('authorDetails')
-  if (document.getElementById("authorPeriodCheckbox").checked) currentCategories.push('authorPeriod')
+  const genreCheck = document.getElementById("genreCheckbox")
+  if (genreCheck && genreCheck.checked) currentCategories.push('genre')
+  
+  const authorCheck = document.getElementById("authorCheckbox")
+  if (authorCheck && authorCheck.checked) currentCategories.push('author')
+  
+  const authorDetailsCheck = document.getElementById("authorDetailsCheckbox")
+  if (authorDetailsCheck && authorDetailsCheck.checked) currentCategories.push('authorDetails')
+  
+  const authorPeriodCheck = document.getElementById("authorPeriodCheckbox")
+  if (authorPeriodCheck && authorPeriodCheck.checked) currentCategories.push('authorPeriod')
 }
 
 // Start test
@@ -129,17 +166,17 @@ function startTest() {
     return
   }
   
-  document.getElementById("workSelection").classList.add("hidden")
-  document.getElementById("categorySelection").classList.add("hidden")
-  document.getElementById("controlsSection").classList.remove("hidden")
-  document.getElementById("quizContainer").classList.remove("hidden")
+  safeToggleClass("workSelection", "hidden", true)
+  safeToggleClass("categorySelection", "hidden", true)
+  safeToggleClass("controlsSection", "hidden", false)
+  safeToggleClass("quizContainer", "hidden", false)
   
   currentQuestionIndex = 0
   showingWrongOnly = false
   testMode = true
   
-  document.getElementById("allQuestionsBtn").classList.add("active")
-  document.getElementById("wrongQuestionsBtn").classList.remove("active")
+  safeToggleClass("allQuestionsBtn", "active", true)
+  safeToggleClass("wrongQuestionsBtn", "active", false)
   
   showQuestion()
 }
@@ -167,7 +204,7 @@ function showQuestion() {
   }
 
   const hasAnswered = userAnswer !== undefined
-  document.getElementById("questionText").textContent = `${currentQuestionIndex + 1}. ${displayQuestion.question}`
+  safeSetText("questionText", `${currentQuestionIndex + 1}. ${displayQuestion.question}`)
 
   const answersContainer = document.getElementById("answersContainer")
   answersContainer.innerHTML = ""
@@ -230,7 +267,7 @@ function showQuestion() {
   }
 
   const starBtn = document.getElementById("starBtn")
-  starBtn.classList.toggle("starred", starredQuestions.has(questionId))
+  if (starBtn) starBtn.classList.toggle("starred", starredQuestions.has(questionId))
 
   updateNavigationButtons()
   updateStats()
@@ -292,8 +329,11 @@ function prevQuestion() {
 }
 
 function updateNavigationButtons() {
-  document.getElementById("prevBtn").disabled = currentQuestionIndex === 0
-  document.getElementById("nextBtn").disabled = currentQuestionIndex >= currentQuestions.length - 1
+  const prevBtn = document.getElementById("prevBtn")
+  if (prevBtn) prevBtn.disabled = currentQuestionIndex === 0
+  
+  const nextBtn = document.getElementById("nextBtn")
+  if (nextBtn) nextBtn.disabled = currentQuestionIndex >= currentQuestions.length - 1
 }
 
 function showAllQuestions() {
@@ -302,8 +342,8 @@ function showAllQuestions() {
   currentQuestionIndex = lastAllQuestionsIndex
   if (currentQuestionIndex >= currentQuestions.length) currentQuestionIndex = 0
   showingWrongOnly = false
-  document.getElementById("allQuestionsBtn").classList.add("active")
-  document.getElementById("wrongQuestionsBtn").classList.remove("active")
+  safeToggleClass("allQuestionsBtn", "active", true)
+  safeToggleClass("wrongQuestionsBtn", "active", false)
   showQuestion()
 }
 
@@ -327,8 +367,8 @@ function showWrongQuestions() {
   currentQuestions = filteredWrongAnswers.map(item => item.question)
   currentQuestionIndex = 0
   showingWrongOnly = true
-  document.getElementById("allQuestionsBtn").classList.remove("active")
-  document.getElementById("wrongQuestionsBtn").classList.add("active")
+  safeToggleClass("allQuestionsBtn", "active", false)
+  safeToggleClass("wrongQuestionsBtn", "active", true)
   showQuestion()
 }
 
@@ -353,8 +393,8 @@ function restartQuiz() {
 function updateStats() {
   const total = currentQuestions.length
   const answered = currentQuestions.filter((q, idx) => userAnswers[`${q.work}_${q.category}_${idx}`] !== undefined).length
-  document.getElementById("questionCounter").textContent = `Otázka ${currentQuestionIndex + 1} z ${total}`
-  document.getElementById("score").textContent = `Zodpovězeno: ${answered}/${total}`
+  safeSetText("questionCounter", `Otázka ${currentQuestionIndex + 1} z ${total}`)
+  safeSetText("score", `Zodpovězeno: ${answered}/${total}`)
 }
 
 function showCompletionScreen() {
@@ -364,9 +404,10 @@ function showCompletionScreen() {
     return ua !== undefined && checkAnswer(ua, q.correct)
   }).length
   const pct = Math.round((correct / total) * 100)
-  document.getElementById("quizContainer").classList.add("hidden")
-  document.getElementById("completionScreen").classList.remove("hidden")
-  document.getElementById("finalScore").textContent = `Dokončeno! Správně: ${correct}/${total} (${pct}%)`
+  
+  safeToggleClass("quizContainer", "hidden", true)
+  safeToggleClass("completionScreen", "hidden", false)
+  safeSetText("finalScore", `Dokončeno! Správně: ${correct}/${total} (${pct}%)`)
 }
 
 function setupKeyboardShortcuts() {
