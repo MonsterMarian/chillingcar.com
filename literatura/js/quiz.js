@@ -2,14 +2,17 @@
 let currentQuestionIndex = 0
 let userAnswers = {}
 let currentQuestions = []
-let currentWork = "all" // Track current literary work
-let currentCategories = ['genre', 'author', 'authorDetails', 'authorPeriod'] // Track selected categories
-let wrongAnswers = new Map() // Track wrong answers
-let showingWrongOnly = false // Track if we're showing only wrong answers
-let lastAllQuestionsIndex = 0 // Track last position in all questions
-let lastWrongQuestionsIndex = 0 // Track last position in wrong questions
-let starredQuestions = new Set() // Track starred questions
-let testMode = false // Track if we're in test mode
+let selectedWorks = [] // Track multiple selected literary works
+let currentMode = "literature" // "literature" or "theory"
+let currentCategories = [] // Track selected literature categories
+let theoryCategories = [] // Track selected theory categories
+
+let wrongAnswers = new Map() 
+let showingWrongOnly = false 
+let lastAllQuestionsIndex = 0 
+let lastWrongQuestionsIndex = 0 
+let starredQuestions = new Set() 
+let testMode = false 
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,25 +26,36 @@ document.addEventListener("DOMContentLoaded", () => {
 // Safe helper for adding event listeners
 function addSafeEventListener(id, event, callback) {
   const el = document.getElementById(id)
-  if (el) {
-    el.addEventListener(event, callback)
-  } else {
-    console.warn(`Element with id "${id}" not found. Event listener for "${event}" not added.`)
-  }
+  if (el) el.addEventListener(event, callback)
 }
 
-// Safe helper for setting text content
 function safeSetText(id, text) {
   const el = document.getElementById(id)
   if (el) el.textContent = text
-  else console.warn(`Element with id "${id}" not found. Cannot set text content.`)
 }
 
-// Safe helper for toggling class
 function safeToggleClass(id, className, force) {
   const el = document.getElementById(id)
   if (el) el.classList.toggle(className, force)
-  else console.warn(`Element with id "${id}" not found. Cannot toggle class "${className}".`)
+}
+
+// Režimy (Literatura / Teorie)
+function setMode(mode) {
+  currentMode = mode;
+  if (mode === 'literature') {
+    safeToggleClass('modeLiteratureBtn', 'active', true);
+    safeToggleClass('modeTheoryBtn', 'active', false);
+    safeToggleClass('workSelection', 'hidden', false);
+    safeToggleClass('literatureCheckboxes', 'hidden', false);
+    safeToggleClass('theoryCheckboxes', 'hidden', true);
+  } else {
+    safeToggleClass('modeLiteratureBtn', 'active', false);
+    safeToggleClass('modeTheoryBtn', 'active', true);
+    safeToggleClass('workSelection', 'hidden', true);
+    safeToggleClass('literatureCheckboxes', 'hidden', true);
+    safeToggleClass('theoryCheckboxes', 'hidden', false);
+  }
+  updateSelectedCategories();
 }
 
 // Render work selection buttons dynamically
@@ -50,40 +64,45 @@ function renderWorkButtons() {
   if (!container) return
 
   container.innerHTML = ""
-  
-  // Add "All works" button first
-  const allBtn = document.createElement("button")
-  allBtn.id = "allWorksBtn"
-  allBtn.className = "work-btn active"
-  allBtn.textContent = "Všechna díla"
-  allBtn.onclick = () => selectWork("all")
-  container.appendChild(allBtn)
 
-  // Add buttons for each work in literatureData
   Object.keys(literatureData).forEach(workKey => {
     const work = literatureData[workKey]
     const btn = document.createElement("button")
     btn.id = `${workKey}Btn`
     btn.className = "work-btn"
+    if (selectedWorks.includes(workKey)) btn.classList.add("active")
     btn.textContent = work.title
-    btn.onclick = () => selectWork(workKey)
+    btn.onclick = () => toggleWorkSelection(workKey)
     container.appendChild(btn)
   })
 }
 
+// Logika presetu
+function selectPreset(workIdsArray) {
+    selectedWorks = [...workIdsArray];
+    renderWorkButtons();
+}
+
+function toggleWorkSelection(workId) {
+    const index = selectedWorks.indexOf(workId);
+    if (index > -1) {
+        selectedWorks.splice(index, 1);
+    } else {
+        selectedWorks.push(workId);
+    }
+    renderWorkButtons();
+}
+
 // Event listeners
 function setupEventListeners() {
-  console.log("Setting up event listeners...")
-  // Category checkboxes
-  const categories = ["genreCheckbox", "authorCheckbox", "authorDetailsCheckbox", "authorPeriodCheckbox"]
-  categories.forEach(id => {
-    addSafeEventListener(id, "change", updateSelectedCategories)
-  })
+  const litCats = ["genreCheckbox", "authorCheckbox", "authorDetailsCheckbox", "authorPeriodCheckbox", "plotCheckbox", "charactersCheckbox", "styleCheckbox"]
+  litCats.forEach(id => addSafeEventListener(id, "change", updateSelectedCategories))
   
-  // Start test button
+  const theoryCats = ["figuryCheckbox", "tropyCheckbox", "lexikologieCheckbox", "slovniDruhyCheckbox", "slovniZasobaCheckbox"]
+  theoryCats.forEach(id => addSafeEventListener(id, "change", updateSelectedCategories))
+  
   addSafeEventListener("startTestBtn", "click", startTest)
   
-  // Navigation buttons
   const navButtons = [
     { id: "allQuestionsBtn", event: "click", callback: showAllQuestions },
     { id: "wrongQuestionsBtn", event: "click", callback: showWrongQuestions },
@@ -95,71 +114,65 @@ function setupEventListeners() {
     { id: "restartBtn", event: "click", callback: restartQuiz }
   ]
 
-  navButtons.forEach(btn => {
-    addSafeEventListener(btn.id, btn.event, btn.callback)
-  })
+  navButtons.forEach(btn => addSafeEventListener(btn.id, btn.event, btn.callback))
 }
 
-// Show work selection screen
 function showWorkSelection() {
   safeToggleClass("quizContainer", "hidden", true)
   safeToggleClass("controlsSection", "hidden", true)
   safeToggleClass("completionScreen", "hidden", true)
-  safeToggleClass("workSelection", "hidden", false)
-  safeToggleClass("categorySelection", "hidden", false)
   
-  currentWork = "all"
-  currentCategories = ['genre', 'author', 'authorDetails', 'authorPeriod']
-  
-  document.querySelectorAll(".work-btn").forEach(btn => btn.classList.remove("active"))
-  const allBtn = document.getElementById("allWorksBtn")
-  if (allBtn) allBtn.classList.add("active")
-  
-  const genreCheck = document.getElementById("genreCheckbox")
-  if (genreCheck) genreCheck.checked = true
-  
-  const authorCheck = document.getElementById("authorCheckbox")
-  if (authorCheck) authorCheck.checked = true
-  
-  const authorDetailsCheck = document.getElementById("authorDetailsCheckbox")
-  if (authorDetailsCheck) authorDetailsCheck.checked = true
-  
-  const authorPeriodCheck = document.getElementById("authorPeriodCheckbox")
-  if (authorPeriodCheck) authorPeriodCheck.checked = true
+  setMode(currentMode)
 }
 
-// Select literary work
-function selectWork(work) {
-  currentWork = work
-  document.querySelectorAll(".work-btn").forEach(btn => btn.classList.remove("active"))
-  const activeBtn = document.getElementById(`${work}Btn`) || document.getElementById("allWorksBtn")
-  if (activeBtn) activeBtn.classList.add("active")
-}
-
-// Update selected categories based on checkboxes
+// Update selected categories
 function updateSelectedCategories() {
   currentCategories = []
-  const genreCheck = document.getElementById("genreCheckbox")
-  if (genreCheck && genreCheck.checked) currentCategories.push('genre')
+  theoryCategories = []
   
-  const authorCheck = document.getElementById("authorCheckbox")
-  if (authorCheck && authorCheck.checked) currentCategories.push('author')
-  
-  const authorDetailsCheck = document.getElementById("authorDetailsCheckbox")
-  if (authorDetailsCheck && authorDetailsCheck.checked) currentCategories.push('authorDetails')
-  
-  const authorPeriodCheck = document.getElementById("authorPeriodCheckbox")
-  if (authorPeriodCheck && authorPeriodCheck.checked) currentCategories.push('authorPeriod')
-}
-
-// Start test
-function startTest() {
-  if (currentCategories.length === 0) {
-    alert("Vyberte alespoň jednu kategorii otázek.")
-    return
+  const litCheckMap = {
+    genreCheckbox: 'genre', authorCheckbox: 'author', 
+    authorDetailsCheckbox: 'authorDetails', authorPeriodCheckbox: 'authorPeriod',
+    plotCheckbox: 'plot', charactersCheckbox: 'characters', styleCheckbox: 'style'
   }
   
-  currentQuestions = getLiteratureQuestions(currentWork, currentCategories)
+  for (const [id, key] of Object.entries(litCheckMap)) {
+      const el = document.getElementById(id);
+      if (el && el.checked) currentCategories.push(key);
+  }
+
+  const theoryCheckMap = {
+      figuryCheckbox: 'figury', tropyCheckbox: 'tropy', lexikologieCheckbox: 'lexikologie',
+      slovniDruhyCheckbox: 'slovniDruhy', slovniZasobaCheckbox: 'slovniZasoba'
+  }
+  
+  for (const [id, key] of Object.entries(theoryCheckMap)) {
+      const el = document.getElementById(id);
+      if (el && el.checked) theoryCategories.push(key);
+  }
+}
+
+function startTest() {
+  if (currentMode === 'literature' && selectedWorks.length === 0) {
+      alert("Vyberte alespoň jedno dílo.");
+      return;
+  }
+  
+  if (currentMode === 'literature' && currentCategories.length === 0) {
+    alert("Vyberte alespoň jednu kategorii otázek.");
+    return;
+  }
+  
+  if (currentMode === 'theory' && theoryCategories.length === 0) {
+      alert("Vyberte alespoň jeden okruh teorie.");
+      return;
+  }
+  
+  if (currentMode === 'literature') {
+      currentQuestions = getLiteratureQuestions(selectedWorks, currentCategories);
+  } else {
+      currentQuestions = getTheoryQuestions(theoryCategories);
+  }
   
   if (currentQuestions.length === 0) {
     alert("Pro vybrané nastavení nejsou dostupné žádné otázky.")
@@ -181,7 +194,6 @@ function startTest() {
   showQuestion()
 }
 
-// Show question
 function showQuestion() {
   if (currentQuestionIndex >= currentQuestions.length) {
     showCompletionScreen()
@@ -338,7 +350,13 @@ function updateNavigationButtons() {
 
 function showAllQuestions() {
   if (showingWrongOnly) lastWrongQuestionsIndex = currentQuestionIndex
-  currentQuestions = getLiteratureQuestions(currentWork, currentCategories)
+  
+  if (currentMode === 'literature') {
+      currentQuestions = getLiteratureQuestions(selectedWorks, currentCategories);
+  } else {
+      currentQuestions = getTheoryQuestions(theoryCategories);
+  }
+  
   currentQuestionIndex = lastAllQuestionsIndex
   if (currentQuestionIndex >= currentQuestions.length) currentQuestionIndex = 0
   showingWrongOnly = false
@@ -353,13 +371,17 @@ function showWrongQuestions() {
   let filteredWrongAnswers = []
   wrongAnswers.forEach((data, id) => {
     const question = data.question
-    if (question && (currentWork === "all" || question.work === currentWork) && currentCategories.includes(question.category)) {
-      filteredWrongAnswers.push(data)
+    if (question) {
+        if (currentMode === 'literature' && selectedWorks.includes(question.work) && currentCategories.includes(question.category)) {
+            filteredWrongAnswers.push(data)
+        } else if (currentMode === 'theory' && question.work === 'theory' && theoryCategories.includes(question.category)) {
+            filteredWrongAnswers.push(data)
+        }
     }
   })
   
   if (filteredWrongAnswers.length === 0) {
-    alert("Nemáte žádné špatné odpovědi pro vybrané dílo a kategorie.")
+    alert("Nemáte žádné špatné odpovědi pro vybrané nastavení.")
     return
   }
   
@@ -432,42 +454,4 @@ function loadState() {
   
   const savedStarred = localStorage.getItem("quizStarredQuestions")
   if (savedStarred) starredQuestions = new Set(JSON.parse(savedStarred))
-}
-
-// Import/Export
-function exportTemplate() {
-  const template = { works: { "example": { title: "Title", author: "Author", period: "Period", genre: "Genre", questions: { genre: [{ question: "Q", answers: ["A"], correct: [0] }] } } } }
-  downloadJSON(template, "template.json")
-}
-
-function exportAllData() {
-  downloadJSON({ works: literatureData }, "data.json")
-}
-
-function importDataFromFile(e) {
-  const file = e.target.files[0]
-  if (!file) return
-  const reader = new FileReader()
-  reader.onload = (ev) => {
-    try {
-      const data = JSON.parse(ev.target.result)
-      if (data.works) {
-        Object.assign(literatureData, data.works)
-        renderWorkButtons()
-        alert("Importováno!")
-      }
-    } catch (err) { alert("Chyba!") }
-  }
-  reader.readAsText(file)
-}
-
-function downloadJSON(data, filename) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"})
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement("a")
-  a.href = url
-  a.download = filename
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
 }

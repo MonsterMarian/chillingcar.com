@@ -20,6 +20,12 @@
                 <a href="../index.html" class="back-link">← Zpět na hlavní web</a>
             </div>
             <h1>Literární Test k maturitě</h1>
+            
+            <div class="mode-toggle">
+                <button id="modeLiteratureBtn" class="work-btn active" onclick="setMode('literature')">Literatura</button>
+                <button id="modeTheoryBtn" class="work-btn" onclick="setMode('theory')">Teorie</button>
+            </div>
+
             <div class="stats">
                 <span id="questionCounter">Otázka 1 z 0</span>
                 <span id="score">Zodpovězeno: 0/0</span>
@@ -27,18 +33,41 @@
         </header>
 
         <div class="work-selection" id="workSelection">
-            <h3>Vyberte literární dílo:</h3>
+            <div class="preset-selection">
+                <h3>Předvolby k maturitě:</h3>
+                <div class="preset-buttons">
+                    <button class="work-btn" onclick="selectPreset(['hamlet', 'romeo'])">Světová do 18. stol.</button>
+                    <button class="work-btn" onclick="selectPreset(['orwell1984', 'farma', 'fahrenheit'])">Antiutopie</button>
+                    <button class="work-btn" onclick="selectPreset(Object.keys(literatureData))">Vybrat vše</button>
+                    <button class="work-btn reset-btn" onclick="selectPreset([])">Zrušit výběr</button>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Vyberte konkrétní díla:</h3>
             <div class="work-buttons" id="workButtonsContainer"></div>
         </div>
 
         <div class="category-selection" id="categorySelection">
-            <h3>Vyberte kategorie:</h3>
-            <div class="category-checkboxes">
+            <h3>Vyberte okruhy:</h3>
+            
+            <div class="category-checkboxes" id="literatureCheckboxes">
                 <label class="checkbox-label"><input type="checkbox" id="genreCheckbox" checked><span class="checkmark"></span>Žánr</label>
                 <label class="checkbox-label"><input type="checkbox" id="authorCheckbox" checked><span class="checkmark"></span>Autor</label>
                 <label class="checkbox-label"><input type="checkbox" id="authorDetailsCheckbox" checked><span class="checkmark"></span>Detaily autora</label>
                 <label class="checkbox-label"><input type="checkbox" id="authorPeriodCheckbox" checked><span class="checkmark"></span>Doba autora</label>
+                <label class="checkbox-label"><input type="checkbox" id="plotCheckbox" checked><span class="checkmark"></span>Děj a témata</label>
+                <label class="checkbox-label"><input type="checkbox" id="charactersCheckbox" checked><span class="checkmark"></span>Postavy</label>
+                <label class="checkbox-label"><input type="checkbox" id="styleCheckbox" checked><span class="checkmark"></span>Jazyk a styl</label>
             </div>
+
+            <div class="category-checkboxes hidden" id="theoryCheckboxes">
+                <label class="checkbox-label"><input type="checkbox" id="figuryCheckbox" checked><span class="checkmark"></span>Básnické figury</label>
+                <label class="checkbox-label"><input type="checkbox" id="tropyCheckbox" checked><span class="checkmark"></span>Tropy</label>
+                <label class="checkbox-label"><input type="checkbox" id="lexikologieCheckbox" checked><span class="checkmark"></span>Lexikologie</label>
+                <label class="checkbox-label"><input type="checkbox" id="slovniDruhyCheckbox" checked><span class="checkmark"></span>Slovní druhy</label>
+                <label class="checkbox-label"><input type="checkbox" id="slovniZasobaCheckbox" checked><span class="checkmark"></span>Slovní zásoba</label>
+            </div>
+
             <button id="startTestBtn" class="start-test-btn">Spustit test</button>
         </div>
 

@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Background Effects (Copied from main styles) */
+/* Background Effects */
 .background-gradient {
   position: fixed;
   inset: 0;
@@ -115,6 +115,14 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+/* Toggles & Stats */
+.mode-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
 .stats {
   display: flex;
   justify-content: center;
@@ -126,7 +134,7 @@ h1 {
 }
 
 /* Cards & Sections */
-.work-selection, .category-selection, .import-export-section, .quiz-container, .completion-screen {
+.work-selection, .category-selection, .quiz-container, .completion-screen {
   background: var(--glass-bg);
   backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
@@ -143,6 +151,19 @@ h3 {
   text-align: center;
   font-size: 1.2rem;
   letter-spacing: 2px;
+}
+
+.preset-selection {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.preset-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
 /* Buttons */
@@ -261,38 +282,6 @@ h3 {
 .checkbox-label input:checked ~ span:not(.checkmark) {
     color: var(--accent-orange);
 }
-
-/* Import/Export */
-.import-export-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.import-export-btn {
-  flex: 1;
-  min-width: 150px;
-  padding: 12px;
-  border: 1px solid var(--glass-border);
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.import-export-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-#exportTemplateBtn { background: rgba(102, 51, 0, 0.3); border-color: #996633; }
-#exportDataBtn { background: rgba(0, 102, 51, 0.3); border-color: #009966; }
-#importDataBtn { background: rgba(51, 0, 102, 0.3); border-color: #663399; }
 
 /* Quiz Controls */
 .controls {

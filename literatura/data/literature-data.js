@@ -7,52 +7,26 @@ const literatureData = {
     genre: "Román",
     questions: {
       genre: [
-        {
-          question: "Do jakého literárního žánru patří román Velký Gatsby?",
-          answers: ["Román", "Povídka", "Drama", "Básnická sbírka"],
-          correct: [0]
-        },
-        {
-          question: "Jaký je hlavní literární žánr díla Velký Gatsby?",
-          answers: ["Detektivní román", "Psychologický román", "Historický román", "Sociální román"],
-          correct: [1]
-        }
+        { question: "Do jakého literárního žánru patří román Velký Gatsby?", answers: ["Román", "Povídka", "Drama", "Básnická sbírka"], correct: [0] },
+        { question: "Jaký je hlavní literární žánr díla Velký Gatsby?", answers: ["Detektivní román", "Psychologický román", "Historický román", "Sociální román"], correct: [1] }
       ],
       author: [
-        {
-          question: "Kdo je autorem románu Velký Gatsby?",
-          answers: ["Ernest Hemingway", "F. Scott Fitzgerald", "John Steinbeck", "William Faulkner"],
-          correct: [1]
-        },
-        {
-          question: "Jaké je celé jméno autora Velkého Gatsbyho?",
-          answers: ["Francis Scott Key Fitzgerald", "Frederick Samuel Charles Fitzgerald", "Franklin Scott Kennedy Fitzgerald", "Frederic Stanley Kirkland Fitzgerald"],
-          correct: [0]
-        }
+        { question: "Kdo je autorem románu Velký Gatsby?", answers: ["Ernest Hemingway", "F. Scott Fitzgerald", "John Steinbeck", "William Faulkner"], correct: [1] }
       ],
       authorDetails: [
-        {
-          question: "Ve kterém roce se narodil F. Scott Fitzgerald?",
-          answers: ["1890", "1896", "1900", "1885"],
-          correct: [1]
-        },
-        {
-          question: "Ve kterém roce zemřel F. Scott Fitzgerald?",
-          answers: ["1940", "1936", "1945", "1950"],
-          correct: [0]
-        }
+        { question: "Ve kterém roce se narodil F. Scott Fitzgerald?", answers: ["1890", "1896", "1900", "1885"], correct: [1] }
       ],
       authorPeriod: [
-        {
-          question: "Ve kterém historickém období žil F. Scott Fitzgerald?",
-          answers: ["Období industrializace", "Meziválečné období", "Období Velké deprese", "Doba války ve Vietnamu"],
-          correct: [1]
-        },
-        {
-          question: "Která kulturní éra je spojena s tvorbou F. Scotta Fitzgeralda?",
-          answers: ["Éra prosperity", "Éra jazzu", "Beatnická éra", "Období rozcvičky"],
-          correct: [1]
-        }
+        { question: "Která kulturní éra je spojena s tvorbou F. Scotta Fitzgeralda?", answers: ["Éra prosperity", "Éra jazzu", "Beatnická éra", "Období rozcvičky"], correct: [1] }
+      ],
+      plot: [
+        { question: "Jaký je hlavní motiv Gatsbyho snažení?", answers: ["Získat zpět lásku Daisy", "Stát se prezidentem", "Získat co nejvíce peněz pro chudobu"], correct: [0] }
+      ],
+      characters: [
+        { question: "Jak se vyvíjí postava Nicka Carrawaye?", answers: ["Ztrácí iluze o společnosti", "Stává se zkorumpovaným", "Spáchá sebevraždu"], correct: [0] }
+      ],
+      style: [
+        { question: "Jakým způsobem je kniha vyprávěna?", answers: ["Vševědoucí vypravěč", "Ich-forma skrze Nicka Carrawaye", "Střídání perspektiv"], correct: [1] }
       ]
     }
   },
@@ -63,34 +37,13 @@ const literatureData = {
     period: "Renesance (16. století)",
     genre: "Tragédie",
     questions: {
-      genre: [
-        {
-          question: "Do jakého dramatického žánru patří dílo Romeo a Julie?",
-          answers: ["Komedie", "Tragédie", "Historická hra", "Pastorační drama"],
-          correct: [1]
-        }
-      ],
-      author: [
-        {
-          question: "Kdo je autorem hry Romeo a Julie?",
-          answers: ["Christopher Marlowe", "Ben Jonson", "William Shakespeare", "Thomas Kyd"],
-          correct: [2]
-        }
-      ],
-      authorDetails: [
-        {
-          question: "Ve kterém roce se narodil William Shakespeare?",
-          answers: ["1558", "1564", "1570", "1550"],
-          correct: [1]
-        }
-      ],
-      authorPeriod: [
-        {
-          question: "Ve kterém historickém období žil William Shakespeare?",
-          answers: ["Středověk", "Renesance", "Baroko", "Osvícenské období"],
-          correct: [1]
-        }
-      ]
+      genre: [{ question: "Do jakého dramatického žánru patří dílo Romeo a Julie?", answers: ["Komedie", "Tragédie", "Historická hra", "Pastorační drama"], correct: [1] }],
+      author: [{ question: "Kdo je autorem hry Romeo a Julie?", answers: ["Christopher Marlowe", "Ben Jonson", "William Shakespeare", "Thomas Kyd"], correct: [2] }],
+      authorDetails: [{ question: "Ve kterém roce se narodil William Shakespeare?", answers: ["1558", "1564", "1570", "1550"], correct: [1] }],
+      authorPeriod: [{ question: "Ve kterém historickém období žil William Shakespeare?", answers: ["Středověk", "Renesance", "Baroko", "Osvícenské období"], correct: [1] }],
+      plot: [{ question: "Kde se příběh převážně odehrává?", answers: ["V Londýně", "V Římě", "Ve Veroně", "V Benátkách"], correct: [2] }],
+      characters: [{ question: "Z jakých rodů pochází hlavní hrdinové?", answers: ["Montekové a Kapuleti", "Lancasterové a Yorkové", "Tudorové a Stuartovci"], correct: [0] }],
+      style: [{ question: "Jakým veršem je hra převážně napsána?", answers: ["Volným veršem", "Blankversem (nerýmovaný jambický pentametr)", "Hexametrem"], correct: [1] }]
     }
   },
   
@@ -100,186 +53,38 @@ const literatureData = {
     period: "Renesance (16. století)",
     genre: "Tragédie",
     questions: {
-      genre: [
-        {
-          question: "Do jakého dramatického žánru patří dílo Hamlet?",
-          answers: ["Komedie", "Tragédie", "Historická hra", "Pastorační drama"],
-          correct: [1]
-        }
-      ],
-      author: [
-        {
-          question: "Kdo je autorem hry Hamlet?",
-          answers: ["Christopher Marlowe", "Ben Jonson", "William Shakespeare", "Thomas Kyd"],
-          correct: [2]
-        }
-      ],
-      authorDetails: [
-        {
-          question: "Jak se jmenuje univerzita, na kterou chodil princ Hamlet?",
-          answers: ["Oxford", "Cambridge", "Wittenberg", "Princeton"],
-          correct: [2]
-        }
-      ],
-      authorPeriod: [
-        {
-          question: "Ve kterém historickém období byla napsána hra Hamlet?",
-          answers: ["Středověk", "Renesance", "Baroko", "Osvícenské období"],
-          correct: [1]
-        }
-      ]
-    }
-  },
-  
-  bilaNemoc: {
-    title: "Bílá nemoc",
-    author: "Karel Čapek",
-    period: "Meziválečné období (1920-1930)",
-    genre: "Drama",
-    questions: {
-      genre: [
-        {
-          question: "Do jakého literárního žánru patří dílo Bílá nemoc?",
-          answers: ["Román", "Drama", "Povídka", "Báseň"],
-          correct: [1]
-        }
-      ],
-      author: [
-        {
-          question: "Kdo je autorem hry Bílá nemoc?",
-          answers: ["Jaroslav Hašek", "Karel Čapek", "Vladislav Vančura", "František Langer"],
-          correct: [1]
-        }
-      ],
-      authorDetails: [
-        {
-          question: "Jak se jmenoval bratr Karla Čapka, spolumilitant?",
-          answers: ["Josef Čapek", "Jan Čapek", "František Čapek", "Václav Čapek"],
-          correct: [0]
-        }
-      ],
-      authorPeriod: [
-        {
-          question: "Ve kterém historickém období žil Karel Čapek?",
-          answers: ["Doba Rakouska-Uherska", "První republika", "Období nacismu", "Komunistické období"],
-          correct: [1]
-        }
-      ]
-    }
-  },
-  
-  kytice: {
-    title: "Kytice",
-    author: "Karel Jaromír Erben",
-    period: "Romantismus / Národní obrození (19. století)",
-    genre: "Sbírka balad",
-    questions: {
-      genre: [
-        {
-          question: "Do jakého literárního žánru patří dílo Kytice?",
-          answers: ["Sbírka balad", "Román v dopisech", "Epos", "Povídkový cyklus"],
-          correct: [0]
-        }
-      ],
-      author: [
-        {
-          question: "Kdo je autorem sbírky Kytice?",
-          answers: ["Karel Hynek Mácha", "Karel Jaromír Erben", "Božena Němcová", "Jan Neruda"],
-          correct: [1]
-        }
-      ],
-      authorDetails: [
-        {
-          question: "Jaké bylo hlavní povolání K. J. Erbena?",
-          answers: ["Lékař", "Archivář a historik", "Právník", "Voják"],
-          correct: [1]
-        }
-      ],
-      authorPeriod: [
-        {
-          question: "Do jakého uměleckého směru řadíme K. J. Erbena?",
-          answers: ["Baroko", "Osvícenství", "Romantismus", "Realismus"],
-          correct: [2]
-        }
-      ]
-    }
-  },
-
-  sedmikosteli: {
-    title: "Sedmikostelí",
-    author: "Miloš Urban",
-    period: "Současná česká literatura (Postmoderna)",
-    genre: "Gotický román",
-    questions: {
-      genre: [{ question: "Jaký žánr nejlépe vystihuje Sedmikostelí?", answers: ["Gotický román", "Sci-fi", "Epos", "Drama"], correct: [0] }],
-      author: [{ question: "Kdo napsal Sedmikostelí?", answers: ["Michal Viewegh", "Miloš Urban", "Jiří Kulhánek", "Jáchym Topol"], correct: [1] }],
-      authorDetails: [{ question: "V jakém městě se Miloš Urban narodil?", answers: ["Praha", "Brno", "Sokolov", "Plzeň"], correct: [2] }],
-      authorPeriod: [{ question: "Do jakého směru řadíme tvorbu Miloše Urbana?", answers: ["Realismus", "Postmoderna", "Surrealismus", "Klasicismus"], correct: [1] }]
-    }
-  },
-
-  havran: {
-    title: "Havran",
-    author: "Edgar Allan Poe",
-    period: "Romantismus (19. století)",
-    genre: "Lyricko-epická báseň",
-    questions: {
-      genre: [{ question: "Jakým žánrem je Havran?", answers: ["Román", "Povídka", "Lyricko-epická báseň", "Komedie"], correct: [2] }],
-      author: [{ question: "Kdo je autorem Havrana?", answers: ["W. Whitman", "E. A. Poe", "Lord Byron", "V. Hugo"], correct: [1] }],
-      authorDetails: [{ question: "Ve kterém městě zemřel E. A. Poe?", answers: ["New York", "Baltimore", "Boston", "Londýn"], correct: [1] }],
-      authorPeriod: [{ question: "V jaké zemi Poe tvořil?", answers: ["Anglie", "Francie", "USA", "Německo"], correct: [2] }]
-    }
-  },
-
-  morgue: {
-    title: "Vraždy v ulici Morgue",
-    author: "Edgar Allan Poe",
-    period: "Romantismus (19. století)",
-    genre: "Povídka",
-    questions: {
-      genre: [{ question: "Jaký žánr založila tato povídka?", answers: ["Horor", "Detektivka", "Fantasy", "Western"], correct: [1] }],
-      author: [{ question: "Kdo je autorem Vražd v ulici Morgue?", answers: ["Arthur Conan Doyle", "Agatha Christie", "E. A. Poe", "Raymond Chandler"], correct: [2] }],
-      authorDetails: [{ question: "Jak se jmenuje detektiv v této povídce?", answers: ["Sherlock Holmes", "C. Auguste Dupin", "Hercule Poirot", "Phil Marlowe"], correct: [1] }],
-      authorPeriod: [{ question: "Kdy Poe žil?", answers: ["16. století", "18. století", "19. století", "20. století"], correct: [2] }]
+      genre: [{ question: "Do jakého dramatického žánru patří dílo Hamlet?", answers: ["Komedie", "Tragédie", "Historická hra"], correct: [1] }],
+      author: [{ question: "Kdo je autorem hry Hamlet?", answers: ["Ben Jonson", "William Shakespeare", "Thomas Kyd"], correct: [1] }],
+      authorDetails: [{ question: "Jak se jmenuje univerzita, na kterou chodil princ Hamlet?", answers: ["Oxford", "Cambridge", "Wittenberg", "Princeton"], correct: [2] }],
+      authorPeriod: [{ question: "Ve kterém historickém období byla napsána hra Hamlet?", answers: ["Středověk", "Renesance", "Baroko"], correct: [1] }],
+      plot: [{ question: "Jak končí hra Hamlet?", answers: ["Hamlet usedá na trůn", "Hamlet žije v exilu", "Téměř všechny hlavní postavy umírají, včetně Hamleta"], correct: [2] }],
+      characters: [{ question: "Jaká je hlavní příčina Hamletova váhání?", answers: ["Strach z války", "Rozpor mezi povinností pomsty a morálními zásadami", "Nedostatek zbraní"], correct: [1] }],
+      style: [{ question: "Co je charakteristické pro jazyk Hamleta?", answers: ["Používá pouze prózu", "Bohatě využívá filozofické monology a slovní hříčky", "Využívá jen nářečí"], correct: [1] }]
     }
   },
 
   cernousci: {
-    title: "10 malých černoušků",
+    title: "Deset malých černoušků",
     author: "Agatha Christie",
     period: "Světová literatura 20. století",
     genre: "Detektivní román",
     questions: {
-      genre: [{ question: "Jaký je žánr 10 malých černoušků?", answers: ["Detektivní román", "Povídka", "Drama", "Epos"], correct: [0] }],
-      author: [{ question: "Kdo je autorem tohoto díla?", answers: ["Dick Francis", "Agatha Christie", "Ed McBain", "Georges Simenon"], correct: [1] }],
-      authorDetails: [{ question: "Jak se Agatě Christie přezdívalo?", answers: ["Královna detektivek", "První dáma literatury", "Matka hororu", "Vévodkyně zločinu"], correct: [0] }],
-      authorPeriod: [{ question: "Ve které zemi Agatha Christie žila?", answers: ["USA", "Francie", "Velká Británie", "Austrálie"], correct: [2] }]
-    }
-  },
-
-  rur: {
-    title: "R.U.R.",
-    author: "Karel Čapek",
-    period: "Meziválečné období (ČSR)",
-    genre: "Drama",
-    questions: {
-      genre: [{ question: "Do jakého žánru patří R.U.R.?", answers: ["Román", "Drama", "Báseň", "Epos"], correct: [1] }],
-      author: [{ question: "Kdo zavedl slovo 'robot' v tomto díle?", answers: ["Karel Čapek", "Josef Čapek", "Isaac Asimov", "Stanislaw Lem"], correct: [1] }],
-      authorDetails: [{ question: "Kdy Karel Čapek zemřel?", answers: ["1938", "1945", "1930", "1950"], correct: [0] }],
-      authorPeriod: [{ question: "Ke kterému proudu literatury Čapek patřil?", answers: ["Demokratický", "Katolický", "Expresionistický", "Surrealistický"], correct: [0] }]
-    }
-  },
-
-  farma: {
-    title: "Farma zvířat",
-    author: "George Orwell",
-    period: "Světová literatura po 2. sv. válce",
-    genre: "Alegorická bajka",
-    questions: {
-      genre: [{ question: "Co je to Farma zvířat?", answers: ["Alegorická bajka", "Cestopis", "Detektivka", "Drama"], correct: [0] }],
-      author: [{ question: "Kdo je autorem Farmy zvířat?", answers: ["Aldous Huxley", "George Orwell", "Ray Bradbury", "Jack London"], correct: [1] }],
-      authorDetails: [{ question: "Jaké bylo skutečné jméno George Orwella?", answers: ["Eric Arthur Blair", "Samuel Clemens", "Charles Dodgson", "John Griffith"], correct: [0] }],
-      authorPeriod: [{ question: "Kritikou čeho je toto dílo?", answers: ["Kapitalismu", "Totalitarismu", "Náboženství", "Technologií"], correct: [1] }]
+      genre: [{ question: "Jaký je žánr Deseti malých černoušků?", answers: ["Detektivní román", "Povídka", "Drama", "Epos"], correct: [0] }],
+      author: [{ question: "Kdo je autorem tohoto díla?", answers: ["Dick Francis", "Agatha Christie", "Ed McBain"], correct: [1] }],
+      authorDetails: [{ question: "Jak se Agathě Christie přezdívalo?", answers: ["Královna detektivek", "První dáma literatury", "Matka hororu"], correct: [0] }],
+      authorPeriod: [{ question: "Ve které zemi Agatha Christie žila?", answers: ["USA", "Francie", "Velká Británie", "Austrálie"], correct: [2] }],
+      plot: [
+        { question: "Jak končí příběh Deseti malých černoušků?", answers: ["Přežije jen Vera", "Všichni na ostrově zemřou, závěr je tragický a uzavřený doznáním v láhvi", "Přijede detektiv a vraha zatkne"], correct: [1] },
+        { question: "Co se děje s porcelánovými figurkami?", answers: ["Žijí vlastním životem", "Mizí ze stolu souběžně s každým úmrtím", "Jsou rozbity hned první den"], correct: [1] }
+      ],
+      characters: [
+        { question: "Jaký je psychologický vývoj Very Claythornové?", answers: ["Zůstává racionální", "Prochází rozkladem osobnosti, podlehne paranoie a spáchá sebevraždu", "Zjistí pravdu a uteče"], correct: [1] },
+        { question: "Jakou roli hraje soudce Lawrence Wargrave?", answers: ["Je první obětí", "Většinu knihy udržuje masku racionálního vůdce, ale ve skutečnosti je vrah", "Je to policista v utajení"], correct: [1] }
+      ],
+      style: [
+        { question: "Jakou kompozici má závěrečné vysvětlení v láhvi?", answers: ["Chronologickou", "Retrospektivní, protože zpětně vysvětluje události", "Paralelní"], correct: [1] },
+        { question: "Jakou vypravěčskou formou je kniha psána?", answers: ["Er-forma", "Ich-forma"], correct: [0] }
+      ]
     }
   },
 
@@ -289,126 +94,93 @@ const literatureData = {
     period: "Světová literatura po 2. sv. válce",
     genre: "Antiutopický román",
     questions: {
-      genre: [{ question: "Jaký žánr je 1984?", answers: ["Antiutopický román", "Utopie", "Historický román", "Povídka"], correct: [0] }],
-      author: [{ question: "Který autor napsal 1984?", answers: ["H. G. Wells", "George Orwell", "Franz Kafka", "Ernest Hemingway"], correct: [1] }],
-      authorDetails: [{ question: "V jakém roce byla kniha vydána?", answers: ["1984", "1949", "1950", "1939"], correct: [1] }],
-      authorPeriod: [{ question: "Jak se jmenuje všudypřítomná postava v knize?", answers: ["Velký bratr", "Velký vůdce", "Velký diktátor", "Velký otec"], correct: [0] }]
+      genre: [{ question: "Jaký žánr je 1984?", answers: ["Antiutopický román", "Utopie", "Historický román"], correct: [0] }],
+      author: [{ question: "Který autor napsal 1984?", answers: ["H. G. Wells", "George Orwell", "Franz Kafka"], correct: [1] }],
+      authorDetails: [{ question: "V jakém roce byla kniha vydána?", answers: ["1984", "1949", "1950"], correct: [1] }],
+      authorPeriod: [{ question: "Jak se jmenuje všudypřítomná postava v knize?", answers: ["Velký bratr", "Velký vůdce", "Velký otec"], correct: [0] }],
+      plot: [{ question: "Jak končí román 1984?", answers: ["Winston je zastřelen při útěku", "Winston je zlomen, zradí Julii a miluje Velkého bratra", "Winston a Julie svrhnou Stranu"], correct: [1] }],
+      characters: [{ question: "Jaký je postupný osud Winstona Smithe?", answers: ["Z rebela se stává poslušným členem Strany skrz mučení", "Vždycky byl zarytý fanda Strany", "Stává se vůdcem Odboje"], correct: [0] }],
+      style: [{ question: "Jaké specifické jazykové prostředky se zde objevují?", answers: ["Pouze archaismy", "Novotvary jazyka Newspeak (např. doublethink)", "Hantec"], correct: [1] }]
     }
   },
 
-  vyhralValku: {
-    title: "Jak jsem vyhrál válku",
-    author: "Patrick Ryan",
+  farma: {
+    title: "Farma zvířat",
+    author: "George Orwell",
     period: "Světová literatura po 2. sv. válce",
-    genre: "Humoristický román",
+    genre: "Alegorická bajka",
     questions: {
-      genre: [{ question: "Jaký je žánr knihy Jak jsem vyhrál válku?", answers: ["Tragédie", "Humoristický román", "Epos", "Drama"], correct: [1] }],
-      author: [{ question: "Kdo je autorem?", answers: ["Joseph Heller", "Patrick Ryan", "Kurt Vonnegut", "Norman Mailer"], correct: [1] }],
-      authorDetails: [{ question: "O které válce kniha pojednává?", answers: ["1. světová", "2. světová", "Vietnamská", "Korejská"], correct: [1] }],
-      authorPeriod: [{ question: "Jaké národnosti byl Patrick Ryan?", answers: ["Američan", "Brit", "Němec", "Francouz"], correct: [1] }]
+      genre: [{ question: "Co je to Farma zvířat?", answers: ["Alegorická bajka", "Cestopis", "Detektivka"], correct: [0] }],
+      author: [{ question: "Kdo je autorem Farmy zvířat?", answers: ["Aldous Huxley", "George Orwell", "Ray Bradbury"], correct: [1] }],
+      authorDetails: [{ question: "Jaké bylo skutečné jméno George Orwella?", answers: ["Eric Arthur Blair", "Samuel Clemens", "Charles Dodgson"], correct: [0] }],
+      authorPeriod: [{ question: "Kritikou čeho je toto dílo?", answers: ["Kapitalismu", "Totalitarismu (specificky stalinismu)", "Náboženství"], correct: [1] }],
+      plot: [{ question: "Co je hlavním tématem Farmy zvířat?", answers: ["Život na anglickém venkově", "Ztráta původních ideálů revoluce a nastolení diktatury", "Boj proti environmentálnímu znečištění"], correct: [1] }],
+      characters: [{ question: "Koho symbolizují prasata Napoleon a Kulišek?", answers: ["Demokratické politiky", "Stalina a Trockého", "Obyčejné dělníky"], correct: [1] }],
+      style: [{ question: "Jakou formou je kniha zpracována?", answers: ["Alegorie a personifikace zvířat", "Faktografický dokument", "Historický epos"], correct: [0] }]
     }
   },
-
+  
   fahrenheit: {
     title: "451 stupňů Fahrenheita",
     author: "Ray Bradbury",
     period: "Světová literatura po 2. sv. válce",
     genre: "Antiutopický román",
     questions: {
-      genre: [{ question: "O čem je tento román?", answers: ["Pálení knih", "Vaření", "Hasičích v lese", "Historii USA"], correct: [0] }],
-      author: [{ question: "Kdo napsal 451 stupňů Fahrenheita?", answers: ["Isaac Asimov", "Ray Bradbury", "Arthur C. Clarke", "Philip K. Dick"], correct: [1] }],
-      authorDetails: [{ question: "Jaká je teplota vznícení papíru ve stupních Celsia?", answers: ["451", "233", "100", "500"], correct: [1] }],
-      authorPeriod: [{ question: "Ke kterému žánru Bradburyho dílo řadíme?", answers: ["Realismus", "Sci-fi / Fantasy", "Dadaismus", "Existencialismus"], correct: [1] }]
-    }
-  },
-
-  revizor: {
-    title: "Revizor",
-    author: "N. V. Gogol",
-    period: "Realismus (19. století)",
-    genre: "Komedie",
-    questions: {
-      genre: [{ question: "Do jakého žánru patří Revizor?", answers: ["Tragédie", "Komedie", "Činohra", "Opera"], correct: [1] }],
-      author: [{ question: "Kdo je autorem Revizora?", answers: ["A. P. Čechov", "N. V. Gogol", "L. N. Tolstoj", "F. M. Dostojevskij"], correct: [1] }],
-      authorDetails: [{ question: "Jak se jmenuje hlavní postava, která je omylem pokládána za revizora?", answers: ["Chlestakov", "Goliadkin", "Raskolnikov", "Oblomov"], correct: [0] }],
-      authorPeriod: [{ question: "Ve které zemi Gogol žil?", answers: ["Rusko", "Polsko", "Francie", "Rakousko"], correct: [0] }]
-    }
-  },
-
-  spalovac: {
-    title: "Spalovač mrtvol",
-    author: "Ladislav Fuks",
-    period: "Česká literatura po 2. sv. válce",
-    genre: "Psychologická novela",
-    questions: {
-      genre: [{ question: "Jaký je žánr Spalovače mrtvol?", answers: ["Psychologická novela", "Sci-fi", "Pohádka", "Epos"], correct: [0] }],
-      author: [{ question: "Kdo je autorem?", answers: ["Arnošt Lustig", "Ladislav Fuks", "Ota Pavel", "Jan Otčenášek"], correct: [1] }],
-      authorDetails: [{ question: "Jak se jmenuje hlavní postava?", answers: ["Karel Kopfrkingl", "Josef Švejk", "Petr Bajza", "Adam Šesták"], correct: [0] }],
-      authorPeriod: [{ question: "Kdy Ladislav Fuks žil?", answers: ["19. století", "20. století", "18. století", "21. století"], correct: [1] }]
-    }
-  },
-
-  naZapadniFronte: {
-    title: "Na západní frontě klid",
-    author: "Erich Maria Remarque",
-    period: "Meziválečné období (Ztracená generace)",
-    genre: "Válečný román",
-    questions: {
-      genre: [{ question: "O které válce je tento román?", answers: ["1. světová", "2. světová", "Napoleonské války", "Občanská válka v USA"], correct: [0] }],
-      author: [{ question: "Kdo napsal Na západní frontě klid?", answers: ["Ernest Hemingway", "E. M. Remarque", "Romain Rolland", "Henri Barbusse"], correct: [1] }],
-      authorDetails: [{ question: "Jak se jmenuje hlavní hrdina?", answers: ["Paul Bäumer", "Tjaden", "Kaczinsky", "Albert Kropp"], correct: [0] }],
-      authorPeriod: [{ question: "Do které literární skupiny Remarque patří?", answers: ["Ztracená generace", "Májovci", "Beatníci", "Surrealisté"], correct: [0] }]
-    }
-  },
-
-  promena: {
-    title: "Proměna",
-    author: "Franz Kafka",
-    period: "Modernismus / Pražská německá literatura",
-    genre: "Povídka",
-    questions: {
-      genre: [{ question: "V co se promění hlavní hrdina?", answers: ["Pes", "Hmyz", "Pták", "Neviditelný"], correct: [1] }],
-      author: [{ question: "Kdo napsal Proměnu?", answers: ["Rainer Maria Rilke", "Franz Kafka", "Max Brod", "Franz Werfel"], correct: [1] }],
-      authorDetails: [{ question: "Jak se jmenuje hlavní hrdina?", answers: ["Řehoř Samsa", "Josef K.", "Zámek", "Karel Rossmann"], correct: [0] }],
-      authorPeriod: [{ question: "Jakým jazykem Kafka psal?", answers: ["Česky", "Německy", "Jidiš", "Francouzsky"], correct: [1] }]
-    }
-  },
-
-  obcanskyPrukaz: {
-    title: "Občanský průkaz",
-    author: "Petr Šabach",
-    period: "Současná česká literatura",
-    genre: "Humoristický román",
-    questions: {
-      genre: [{ question: "O čem vypráví Občanský průkaz?", answers: ["Dospívání v 70. letech", "Středověku", "Budoucnosti", "Válce"], correct: [0] }],
-      author: [{ question: "Kdo je autorem?", answers: ["Michal Viewegh", "Petr Šabach", "Patrik Hartl", "Radka Třeštíková"], correct: [1] }],
-      authorDetails: [{ question: "Který film byl natočen podle Šabachových povídek?", answers: ["Pelíšky", "Kolja", "Obecná škola", "Vrchní, prchni!"], correct: [0] }],
-      authorPeriod: [{ question: "Kdy Petr Šabach zemřel?", answers: ["2010", "2017", "2005", "2020"], correct: [1] }]
-    }
-  },
-
-  ostreSledovaneVlaky: {
-    title: "Ostře sledované vlaky",
-    author: "Bohumil Hrabal",
-    period: "Česká literatura po 2. sv. válce",
-    genre: "Novela",
-    questions: {
-      genre: [{ question: "Kde se odehrává děj Ostře sledovaných vlaků?", answers: ["V nemocnici", "Na železniční stanici", "V továrně", "V dole"], correct: [1] }],
-      author: [{ question: "Kdo je autorem?", answers: ["Bohumil Hrabal", "Milan Kundera", "Václav Havel", "Ludvík Vaculík"], correct: [0] }],
-      authorDetails: [{ question: "Kdo režíroval film, který získal Oscara?", answers: ["Jiří Menzel", "Miloš Forman", "Jan Svěrák", "Věra Chytilová"], correct: [0] }],
-      authorPeriod: [{ question: "Jak Hrabal nazýval své specifické postavy?", answers: ["Pábitelé", "Smolaři", "Hrdinové", "Ztroskotanci"], correct: [0] }]
+      genre: [{ question: "O čem je tento román?", answers: ["Pálení knih", "Vaření", "Hasičích v lese"], correct: [0] }],
+      author: [{ question: "Kdo napsal 451 stupňů Fahrenheita?", answers: ["Isaac Asimov", "Ray Bradbury", "Arthur C. Clarke"], correct: [1] }],
+      authorDetails: [{ question: "Jaká je teplota vznícení papíru ve stupních Celsia?", answers: ["451", "233", "100"], correct: [1] }],
+      authorPeriod: [{ question: "Ke kterému žánru Bradburyho dílo řadíme?", answers: ["Realismus", "Sci-fi", "Dadaismus"], correct: [1] }],
+      plot: [{ question: "Jaký je hlavní konflikt knihy?", answers: ["Boj za zachování lidského vědění, paměti a literatury", "Konflikt mezi státy", "Invaze mimozemšťanů"], correct: [0] }],
+      characters: [{ question: "Kdo je Guy Montag?", answers: ["Hasič, který knihy chrání od začátku", "Hasič, který začne o své práci pochybovat a knihy zachraňovat", "Kapitán hasičů"], correct: [1] }],
+      style: [{ question: "Jaká z domněnek ohledně názvu knihy je pravdivá?", answers: ["Je to symbolická teplota, při níž začínají hořet stránky knih", "Je to jméno hlavní postavy", "Je to počet dní do války"], correct: [0] }]
     }
   }
 };
 
-// Function to get all questions for a specific work and categories
-function getLiteratureQuestions(work, categories) {
+// Literární teorie questions data
+const theoryData = {
+  figury: [
+    { question: "Co je to epizeuxis?", answers: ["Opakování slov za sebou v jednom verši", "Básnický přívlastek", "Změněný slovosled"], correct: [0] },
+    { question: "Co je to anafora?", answers: ["Opakování slov na začátku verše", "Opakování hlásek na začátku sousedních slov", "Zveličená skutečnost"], correct: [0] },
+    { question: "Co znamená inverze?", answers: ["Vypuštění slov", "Změněný slovosled", "Protikladný význam"], correct: [1] },
+    { question: "Jak se nazývá opakování slov na konci verše?", answers: ["Epifora", "Anafora", "Epanastrofa"], correct: [0] }
+  ],
+  tropy: [
+    { question: "Co je to personifikace?", answers: ["Zosobnění - přenesení lidských vlastností na neživé věci", "Přenesení významu na základě vnitřní souvislosti", "Nadsázka"], correct: [0] },
+    { question: "Co je to metafora?", answers: ["Záměrné užití slov v opačném smyslu", "Přenesení významu na základě vnější podobnosti", "Básnický přívlastek"], correct: [1] },
+    { question: "Co je to oxymorón?", answers: ["Zvláštní uspořádání hlásek", "Protimluv, nesmyslné spojení slov (např. mrtvé milenky cit)", "Zjemnění skutečnosti"], correct: [1] },
+    { question: "Jak se nazývá nadsázka (zveličení skutečnosti)?", answers: ["Hyperbola", "Alegorie", "Eufemismus"], correct: [0] }
+  ],
+  lexikologie: [
+    { question: "Co jsou to homonyma?", answers: ["Slova opačného významu", "Slova, která se stejně vyslovují i píšou, ale mají jiný význam (např. koruna)", "Slova různého znění, ale podobného významu"], correct: [1] },
+    { question: "Které slovo je synonymem ke slovu 'nerost'?", answers: ["Zvíře", "Rostlina", "Minerál"], correct: [2] },
+    { question: "Co jsou to antonyma?", answers: ["Slova protikladného významu", "Zastaralá slova", "Slova se stejným významem"], correct: [0] },
+    { question: "Pojmy jako slovenský, český, německý patří pod jaké nadřazené slovo (hyperonymum)?", answers: ["Žánry", "Jazyky", "Města"], correct: [1] }
+  ],
+  slovniDruhy: [
+    { question: "Jaký je rozdíl mezi ohebnými a neohebnými slovními druhy?", answers: ["Ohebná slova mění tvar (skloňují se/časují), neohebná ne", "Neohebná slova mění tvar", "Není v nich rozdíl"], correct: [0] },
+    { question: "Do jakého slovního druhu patří slovo 'včera'?", answers: ["Předložka", "Příslovce", "Částice", "Spojka"], correct: [1] },
+    { question: "Který z těchto slovních druhů je neohebný?", answers: ["Podstatné jméno", "Číslovka", "Spojka", "Zájmeno"], correct: [2] },
+    { question: "Do které skupiny podstatných jmen patří 'ptactvo' nebo 'listí'?", answers: ["Pomnožná", "Hromadná", "Látková"], correct: [1] },
+    { question: "Jaké slovo je vždy částice?", answers: ["Kolem", "Kéž", "Bratrův", "Špatně"], correct: [1] }
+  ],
+  slovniZasoba: [
+    { question: "Co jsou archaismy?", answers: ["Zastaralé výrazy vytlačené novějším slovem (věc stále existuje)", "Zcela zaniklé skutečnosti", "Nová slova pro moderní technologie"], correct: [0] },
+    { question: "Co jsou historismy?", answers: ["Zastaralá slova", "Výrazy pro zaniklé věci (např. dráb, žezlo)", "Básnické výrazy"], correct: [1] },
+    { question: "Co je to argot?", answers: ["Mluva typická pro daný region (nářečí)", "Mluva společenské spodiny a zlodějů pro utajení významu", "Profesní mluva lékařů"], correct: [1] },
+    { question: "Co musí obsahovat 'přísloví' na rozdíl od rčení?", answers: ["Počasí", "Rým", "Mravní ponaučení"], correct: [2] }
+  ]
+};
+
+// Function to get questions for literature mode
+function getLiteratureQuestions(selectedWorksArray, categories) {
   const questions = [];
   
-  if (work === "all") {
-    // Return questions from all works
-    Object.keys(literatureData).forEach(workKey => {
-      const workData = literatureData[workKey];
+  if (selectedWorksArray.length === 0) return questions;
+
+  selectedWorksArray.forEach(workKey => {
+    const workData = literatureData[workKey];
+    if (workData) {
       categories.forEach(category => {
         if (workData.questions[category]) {
           workData.questions[category].forEach(q => {
@@ -424,28 +196,28 @@ function getLiteratureQuestions(work, categories) {
           });
         }
       });
-    });
-  } else {
-    // Return questions from specific work
-    const workData = literatureData[work];
-    if (workData) {
-      categories.forEach(category => {
-        if (workData.questions[category]) {
-          workData.questions[category].forEach(q => {
-            questions.push({
-              ...q,
-              work: work,
-              category: category,
-              workTitle: workData.title,
-              author: workData.author,
-              period: workData.period,
-              genre: workData.genre
-            });
-          });
-        }
+    }
+  });
+  
+  return questions;
+}
+
+// Function to get questions for theory mode
+function getTheoryQuestions(theoryCategories) {
+  const questions = [];
+
+  theoryCategories.forEach(catKey => {
+    if (theoryData[catKey]) {
+      theoryData[catKey].forEach(q => {
+        questions.push({
+          ...q,
+          work: "theory",
+          category: catKey,
+          workTitle: "Literární Teorie"
+        });
       });
     }
-  }
-  
+  });
+
   return questions;
 }
