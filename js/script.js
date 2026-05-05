@@ -1,4 +1,4 @@
-const exam = { name: "Za jak dlouho tě Mandis vomrdá", date: "2026-05-22T07:30:00" };
+const exam = {name: "Do ústních zkoušek (včetně Mandise) zbývá:", date: "2026-05-22T07:30:00"};
 
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
