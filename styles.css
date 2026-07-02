@@ -1,18 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Space Mono", monospace;
-  background-color: #0a0a0a;
-  color: #fff;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap");
+@import "./brutalist.css";
 
 .hero-header {
   width: 100%;
@@ -22,123 +9,85 @@ body {
   width: 100%;
   height: auto;
   display: block;
-}
-
-/* ─── Projects ─── */
-.projects-section {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 6rem;
+  border-bottom: 3px solid var(--brut-accent);
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 1px;
+  background: var(--brut-border);
+  border: 2px solid var(--brut-border);
+  box-shadow: var(--shadow-hard);
 }
 
-/* ─── Base Button ─── */
-.project-btn {
+.project-card {
   position: relative;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--brut-deep);
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  transition: none;
+  transition: background 100ms;
 }
 
-.project-btn:active {
-  transform: translate(2px, 2px);
+.project-card:hover {
+  background: var(--brut-surface);
 }
 
-.btn-border {
+.project-card:active {
+  background: var(--brut-accent);
+}
+
+.project-card:active .card-num {
+  color: var(--brut-accent-fg);
+}
+
+.card-accent {
   position: absolute;
-  inset: 0;
-  border: 3px solid #fff;
-  pointer-events: none;
-  z-index: 2;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: transparent;
+  transition: background 100ms;
 }
 
-.btn-inner {
-  position: relative;
-  z-index: 2;
+.project-card:hover .card-accent {
+  background: var(--brut-accent);
 }
 
-.btn-num {
-  display: block;
-  font-family: "Space Mono", monospace;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #fff;
+.project-card:active .card-accent {
+  background: var(--brut-black);
 }
 
-/* ─── Non-featured ─── */
-.project-btn:not(.featured) {
-  background: #111;
-  border-right: none;
+.card-num {
+  font-family: var(--font-main);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--brut-muted);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  transition: color 100ms;
 }
 
-.project-btn:not(.featured):nth-child(4) {
-  border-right: 3px solid #fff;
+.project-card:hover .card-num {
+  color: var(--brut-white);
 }
 
-.project-btn:not(.featured):hover {
-  background: #222;
+.project-card:active .card-num {
+  color: var(--brut-accent-fg);
 }
 
-.project-btn:not(.featured):hover .btn-num {
-  color: #000;
-  background: #fff;
-}
-
-/* ─── Featured ─── */
-.featured {
-  background: #ff6b35;
-}
-
-.featured .btn-num {
-  color: #000;
-}
-
-.featured:hover {
-  background: #fff;
-}
-
-.featured:hover .btn-num {
-  color: #ff6b35;
-}
-
-.featured:hover .btn-border {
-  border-color: #000;
-}
-
-/* Shared border overrides - make grid borders overlap */
-.project-btn + .project-btn .btn-border {
-  border-left: none;
-}
-
-.project-btn:not(.featured) + .featured .btn-border {
-  border-left: 3px solid #fff;
-}
-
-.featured + .project-btn .btn-border {
-  border-left: 3px solid #fff;
-}
-
-/* ─── Responsive ─── */
 @media (max-width: 500px) {
-  .projects-section {
-    padding: 2rem 0.75rem 4rem;
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .btn-num {
-    font-size: 1.3rem;
-  }
-
-  .btn-border {
-    border-width: 2px;
+  .card-num {
+    font-size: 1.4rem;
   }
 }
