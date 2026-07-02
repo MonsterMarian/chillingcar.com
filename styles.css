@@ -11,3 +11,57 @@
   display: block;
   border-bottom: 3px solid var(--brut-accent);
 }
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--brut-border);
+  border: 2px solid var(--brut-border);
+  box-shadow: var(--shadow-hard);
+}
+
+.btn-brut {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brut-deep);
+  color: var(--brut-muted);
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-brut::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: transparent;
+  transition: background 100ms;
+}
+
+.btn-brut:hover {
+  background: var(--brut-surface);
+  color: var(--brut-white);
+}
+
+.btn-brut:hover::before {
+  background: var(--brut-accent);
+}
+
+.btn-brut:active {
+  background: var(--brut-accent);
+  color: var(--brut-accent-fg);
+}
+
+@media (max-width: 500px) {
+  .btn-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
