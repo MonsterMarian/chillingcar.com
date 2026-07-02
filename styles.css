@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 
 * {
   margin: 0;
@@ -14,10 +14,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Header */
 .hero-header {
   width: 100%;
-  position: relative;
 }
 
 .hero-image {
@@ -26,261 +24,163 @@ body {
   display: block;
 }
 
-/* Projects Section */
+/* ─── Projects ─── */
 .projects-section {
-  max-width: 1100px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
-}
-
-.section-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #6b6b8d;
-  margin-bottom: 2rem;
-  text-align: center;
+  padding: 2.5rem 1.5rem 5rem;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
-/* Base Card */
-.project-card {
+/* ─── Base Button ─── */
+.project-btn {
   position: relative;
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1 / 1.1;
-  background: rgba(14, 14, 24, 0.8);
-  border-radius: 18px;
+  gap: 0.3rem;
+  border-radius: 16px;
   text-decoration: none;
   color: inherit;
-  overflow: hidden;
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.4s ease;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.project-card:hover {
-  transform: translateY(-6px) scale(1.02);
+.project-btn:active {
+  transform: scale(0.95);
 }
 
-.project-card:active {
-  transform: translateY(-2px) scale(0.99);
-}
-
-/* Card Border */
-.card-border {
+.btn-border {
   position: absolute;
   inset: 0;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
   pointer-events: none;
   z-index: 2;
+  transition: border-color 0.3s ease;
 }
 
-/* Card Number */
-.card-number {
-  position: absolute;
-  top: 14px;
-  left: 16px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.25);
-  z-index: 3;
+.project-btn:hover .btn-border {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Card Content */
-.card-content {
+.btn-num {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 1rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.card-icon {
-  font-size: 2.2rem;
-  margin-bottom: 0.6rem;
+.btn-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #e0e0ff;
-  margin-bottom: 0.25rem;
-  line-height: 1.3;
+.project-btn:hover .btn-num {
+  color: #fff;
+  transform: scale(1.05);
 }
 
-.card-desc {
-  font-size: 0.72rem;
-  font-weight: 400;
-  color: #7a7a9a;
-  line-height: 1.4;
+.project-btn:hover .btn-icon {
+  opacity: 0.8;
+  transform: scale(1.15);
 }
 
-/* ======================== */
-/* FEATURED GLOW EFFECTS    */
-/* ======================== */
+.project-btn:not(.featured) {
+  background: rgba(16, 16, 28, 0.9);
+}
 
+.project-btn:not(.featured):hover {
+  background: rgba(22, 22, 38, 0.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Featured ─── */
 .featured {
-  border: none;
+  background: rgba(16, 16, 28, 0.9);
 }
 
-.featured .card-border {
-  border-color: transparent;
+.featured .btn-border {
+  border-color: rgba(255, 107, 53, 0.35);
 }
 
-/* Orange Glow */
-.featured--orange .card-glow {
-  position: absolute;
-  inset: -1px;
-  border-radius: 18px;
-  background: conic-gradient(
-    from 180deg,
-    rgba(255, 107, 53, 0.6),
-    rgba(247, 147, 30, 0.3),
-    rgba(255, 107, 53, 0.05),
-    rgba(247, 147, 30, 0.3),
-    rgba(255, 107, 53, 0.6)
-  );
-  z-index: 0;
-  animation: glow-spin 6s linear infinite;
+.featured .btn-num {
+  color: #ff6b35;
+}
+
+.featured .btn-icon {
   opacity: 0.7;
-  transition: opacity 0.4s ease;
 }
 
-.featured--orange .card-border {
-  border-color: rgba(255, 107, 53, 0.15);
+.featured:hover .btn-num {
+  color: #ff8c5a;
+  text-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
 }
 
-.featured--orange:hover .card-glow {
+.featured:hover .btn-icon {
   opacity: 1;
 }
 
-/* Inner mask to create the ring effect */
-.featured--orange::before {
-  content: "";
-  position: absolute;
-  inset: 1.5px;
-  border-radius: 16.5px;
-  background: rgba(14, 14, 24, 0.92);
-  z-index: 1;
+.featured:hover .btn-border {
+  border-color: rgba(255, 107, 53, 0.7);
 }
 
-@keyframes glow-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Ambient glow behind card */
-.featured--orange::after {
-  content: "";
-  position: absolute;
-  bottom: -30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  height: 50%;
-  background: radial-gradient(ellipse, rgba(255, 107, 53, 0.2), transparent 70%);
-  z-index: 0;
-  filter: blur(20px);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.featured--orange:hover::after {
-  opacity: 1;
-}
-
-/* Shine sweep on hover */
-.card-shine {
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  z-index: 3;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.card-shine::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.04) 45%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.04) 55%,
-    transparent 60%
-  );
-  transition: left 0.7s ease;
-}
-
-.featured:hover .card-shine::before {
-  left: 130%;
-}
-
-/* Number highlight for featured */
-.featured .card-number {
-  color: rgba(255, 107, 53, 0.5);
-}
-
-/* Hover lift for featured */
 .featured:hover {
   box-shadow:
-    0 8px 32px rgba(255, 107, 53, 0.15),
-    0 0 60px rgba(255, 107, 53, 0.08);
+    0 0 25px rgba(255, 107, 53, 0.2),
+    0 0 50px rgba(255, 107, 53, 0.08),
+    inset 0 0 30px rgba(255, 107, 53, 0.05);
 }
 
-/* Non-featured hover */
-.project-card:not(.featured):hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+/* Background gradient for featured */
+.featured .btn-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: radial-gradient(
+    circle at 50% 80%,
+    rgba(255, 107, 53, 0.12) 0%,
+    transparent 60%
+  );
+  z-index: 0;
+  transition: opacity 0.3s ease;
 }
 
-.project-card:not(.featured) .card-number {
-  color: rgba(255, 255, 255, 0.15);
+.featured:hover .btn-bg {
+  opacity: 1.3;
 }
 
-/* Responsive */
-@media (max-width: 800px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
+/* ─── Responsive ─── */
+@media (max-width: 500px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
 
-  .card-icon {
-    font-size: 1.8rem;
-  }
-
-  .card-title {
-    font-size: 0.9rem;
-  }
-
-  .card-desc {
-    font-size: 0.65rem;
-  }
-
   .projects-section {
     padding: 2rem 1rem 4rem;
+  }
+
+  .btn-num {
+    font-size: 1.3rem;
+  }
+
+  .btn-icon {
+    font-size: 1.1rem;
   }
 }
