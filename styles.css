@@ -6,11 +6,6 @@ body {
   padding: 0;
 }
 
-.viewport {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 .hero-header {
   width: 100%;
   margin: 0;
@@ -24,14 +19,15 @@ body {
   border-bottom: 3px solid var(--brut-accent);
 }
 
+.viewport {
+  margin: 2rem auto !important;
+  padding: 0 1.5rem !important;
+}
+
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding: 12px;
-  background: var(--brut-surface);
-  border: 2px solid var(--brut-border);
-  box-shadow: var(--shadow-hard);
+  gap: 8px;
 }
 
 .btn-brut {
@@ -40,15 +36,16 @@ body {
   justify-content: center;
   background: var(--brut-deep);
   color: var(--brut-muted);
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-decoration: none;
-  padding: 1.2rem 1rem;
-  letter-spacing: 0.05em;
+  padding: 0.7rem 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--brut-border);
   position: relative;
   overflow: hidden;
-  transition: background 150ms, color 150ms, border-color 150ms;
-  border: 2px solid var(--brut-border);
+  transition: all 150ms ease;
 }
 
 .btn-brut::before {
@@ -57,7 +54,7 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px;
+  width: 3px;
   background: transparent;
   transition: background 150ms;
 }
@@ -65,9 +62,7 @@ body {
 .btn-brut:hover {
   background: var(--brut-surface);
   color: var(--brut-white);
-  border-color: var(--brut-border-hi);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-small);
+  border-color: var(--brut-accent);
 }
 
 .btn-brut:hover::before {
@@ -77,11 +72,9 @@ body {
 .btn-brut:active {
   background: var(--brut-accent);
   color: var(--brut-accent-fg);
-  transform: translateY(0);
-  box-shadow: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .btn-grid {
     grid-template-columns: repeat(2, 1fr);
   }
