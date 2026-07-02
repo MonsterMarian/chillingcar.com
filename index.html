@@ -10,5 +10,70 @@
   <header class="hero-header">
     <img src="HeadBar.png" alt="ChillingCar.com" class="hero-image">
   </header>
+
+  <main class="projects-section">
+    <h2 class="section-title">Projekty</h2>
+    <div class="projects-grid">
+
+      <a href="story-game/" class="project-card featured featured--orange">
+        <div class="card-glow"></div>
+        <div class="card-border"></div>
+        <div class="card-number">#1</div>
+        <div class="card-content">
+          <div class="card-icon">&#x1f3ae;</div>
+          <h3 class="card-title">Chronicles of Fate</h3>
+          <p class="card-desc">Interaktivní příběhová hra</p>
+        </div>
+        <div class="card-shine"></div>
+      </a>
+
+      <a href="1/" class="project-card featured featured--orange">
+        <div class="card-glow"></div>
+        <div class="card-border"></div>
+        <div class="card-number">#2</div>
+        <div class="card-content">
+          <div class="card-icon">&#x1f4d6;</div>
+          <h3 class="card-title">Story Game v1</h3>
+          <p class="card-desc">První verze příběhu</p>
+        </div>
+        <div class="card-shine"></div>
+      </a>
+
+      <a href="2/" class="project-card featured featured--orange">
+        <div class="card-glow"></div>
+        <div class="card-border"></div>
+        <div class="card-number">#3</div>
+        <div class="card-content">
+          <div class="card-icon">&#x1f3ae;</div>
+          <h3 class="card-title">Story Game v2</h3>
+          <p class="card-desc">Vylepšená verze hry</p>
+        </div>
+        <div class="card-shine"></div>
+      </a>
+
+      <a href="3/" class="project-card">
+        <div class="card-border"></div>
+        <div class="card-number">#4</div>
+        <div class="card-content">
+          <div class="card-icon">&#x23f3;</div>
+          <h3 class="card-title">Exam Countdown</h3>
+          <p class="card-desc">Odpočet zkoušek</p>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mx', x + 'px');
+        card.style.setProperty('--my', y + 'px');
+      });
+    });
+  </script>
 </body>
 </html>
